@@ -16,5 +16,7 @@ int main(){
 	printf("\n\n");
 	printanome(nomeeqp);
 	printf("\n");
+	printanome(cpunome);
+	printf("\n");
 	printf("%s %s %s", m1.nome, m2.nome, m3.nome);
 }
