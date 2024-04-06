@@ -13,7 +13,9 @@ typedef struct{
 }tp_nome_equipe;
 
 void faznome(tp_nome_equipe *pnome, tp_nome_equipe *cpunome){
-	printf("\n\n\n");
+	printf("\n\n|============================================|\n");
+	printf("|======> BEM VINDO AO SUPER AUTO-JOBS <======|\n");
+	printf("|============================================|\n\n");
 	
 		//definição das variaveis contador, numero aleatorio pro substantivo, numero aleatorio pro adjetivo
 	int i, rng_sub[4], rng_adj[4];
