@@ -246,6 +246,7 @@ void randomiza_pilha(tp_pilha *p){
 void faz_mao(tp_animal *m1, tp_animal *m2, tp_animal *m3){
 	tp_pilha pilha;
 	tp_animal e;
+	inicializar_pilha(&pilha);
 	randomiza_pilha(&pilha);
 	pop(&pilha, &e);
 	*m1 = e;
@@ -257,4 +258,3 @@ void faz_mao(tp_animal *m1, tp_animal *m2, tp_animal *m3){
 
 
 #endif
-    
