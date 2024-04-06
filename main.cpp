@@ -1,21 +1,20 @@
 #include "animain.h"
-
+#include "randname.h"
+#include "animão.h"
+#include <string.h>
 
 int main(){
-	//Criacaoo dos personagens
-	tp_animal professor[3], jornalista[3], ator[3], arquiteto[3], motorista[3], programador[3];
-	tp_animal fazendeiro[3], medico[3], advogado[3], policial[3], vendedor[3], guardacostas[3];
-	tp_animal filhododono[3], bombeiro[3], atendente[3], fotografo[3], cantor[3], mecanico[3];
-	tp_animal salvavidas[3], cozinheiro[3], artista[3], biologo[3], mendigo[3], astronauta[3];
-	tp_animal psicologo[3], empresario[3], enfermeiro[3], atleta[3], piloto[3], nutricionista[3];
-	//Definicaoo da habilidade de cada personagem
-	//Professor nivel 1 2 e 3 respectivamente por linha																											//habilidades
-	professor[0].nome = "professor"; professor[0].vida = 2; professor[0].dano = 2; professor[0].descricao = "PROFESSOR: adiciona 1 de dano aos invocados"; professor[0].skill.alvo1 = 0; professor[0].skill.alvo2 = 0; professor[0].skill.alvoR = 0; professor[0].skill.alvoT = 0; professor[0].skill.alvoI = 1; professor[0].skill.pod_baratear = 0; professor[0].skill.pod_invoca	= 0; professor[0].skill.pod_invoca_alvo; professor[0].skill.pod_buffar = 1; professor[0].skill.cond_alvomata = 0; 	professor[0].skill.cond_alvomorre = 0; 	professor[0].skill.cond_levadano = 0; professor[0].skill.cond_iniciobatalha	= 0; professor[0].skill.cond_ataca = 0; professor[0].skill.cond_mata = 0; professor[0].skill.cond_morre = 0; professor[0].skill.buffvida = 0; professor[0].skill.buffdano = 1;			
-	professor[1].nome = "professor"; professor[1].vida = 4; professor[1].dano = 4; professor[1].descricao = "PROFESSOR: adiciona 2 de dano e 2 de vida aos invocados"; professor[1].skill.alvo1 = 0; professor[1].skill.alvo2 = 0; professor[1].skill.alvoR = 0; professor[1].skill.alvoT = 0; professor[1].skill.alvoI = 1; professor[1].skill.pod_baratear = 0; professor[1].skill.pod_invoca	= 0; professor[1].skill.pod_invoca_alvo; professor[1].skill.pod_buffar = 1; professor[1].skill.cond_alvomata = 0; 	professor[1].skill.cond_alvomorre = 0; 	professor[1].skill.cond_levadano = 0; professor[1].skill.cond_iniciobatalha	= 0; professor[1].skill.cond_ataca; professor[1].skill.cond_mata; professor[1].skill.cond_morre = 0; professor[1].skill.buffvida = 2; professor[1].skill.buffdano = 2;
-	professor[2].nome = "professor"; professor[2].vida = 7; professor[2].dano = 7; professor[2].descricao = "PROFESSOR: adiciona 4 de dano e 3 de vida aos invocados"; professor[2].skill.alvo1 = 0; professor[2].skill.alvo2 = 0; professor[2].skill.alvoR = 0; professor[2].skill.alvoT = 0; professor[2].skill.alvoI = 1; professor[2].skill.pod_baratear = 0; professor[2].skill.pod_invoca	= 0; professor[2].skill.pod_invoca_alvo; professor[2].skill.pod_buffar = 1; professor[2].skill.cond_alvomata = 0; 	professor[2].skill.cond_alvomorre = 0; 	professor[2].skill.cond_levadano = 0; professor[2].skill.cond_iniciobatalha	= 0; professor[2].skill.cond_ataca = 0; professor[2].skill.cond_mata = 0; professor[2].skill.cond_morre = 0; professor[2].skill.buffvida = 4; professor[2].skill.buffdano = 3;									
-	//jornalista nivel 1 2 e 3 respectivamente por linha		
-	jornalista[0].nome = "jornalista"; jornalista[0].vida = 3; jornalista[0].dano = 4; jornalista[0].descricao = "JORNALISTA: da 2 de dano ao ultimo inimigo"; jornalista[0].skill.alvo1 = 5; jornalista[0].skill.alvo2 = 0; jornalista[0].skill.alvoR = 0; jornalista[0].skill.alvoT = 0; jornalista[0].skill.alvoI = 0; jornalista[0].skill.pod_baratear = 0; jornalista[0].skill.pod_invoca	= 0; jornalista[0].skill.pod_invoca_alvo; jornalista[0].skill.pod_buffar = 0; jornalista[0].skill.cond_alvomata = 0; jornalista[0].skill.cond_alvomorre = 0; jornalista[0].skill.cond_levadano = 0; professor[0].skill.cond_iniciobatalha = 1; jornalista[0].skill.cond_ataca = 0; jornalista[0].skill.cond_mata = 0; jornalista[0].skill.cond_morre = 0; jornalista[0].skill.dano = 2;
-	jornalista[0].nome = "jornalista"; jornalista[1].vida = 5; jornalista[1].dano = 5; jornalista[1].descricao = "JORNALISTA: da 5 de dano ao ultimo inimigo"; jornalista[1].skill.alvo1 = 5; jornalista[1].skill.alvo2 = 0; jornalista[1].skill.alvoR = 0; jornalista[1].skill.alvoT = 0; jornalista[1].skill.alvoI = 0; jornalista[1].skill.pod_baratear = 0; jornalista[1].skill.pod_invoca	= 0; jornalista[1].skill.pod_invoca_alvo; jornalista[1].skill.pod_buffar = 0; jornalista[1].skill.cond_alvomata = 0; jornalista[1].skill.cond_alvomorre = 0; jornalista[1].skill.cond_levadano = 0; professor[1].skill.cond_iniciobatalha = 1; jornalista[1].skill.cond_ataca = 0; jornalista[1].skill.cond_mata = 0; jornalista[1].skill.cond_morre = 0; jornalista[1].skill.dano = 5;
-	jornalista[0].nome = "jornalista"; jornalista[2].vida = 8; jornalista[2].dano = 8; jornalista[2].descricao = "JORNALISTA: da 8 de dano ao ultimo inimigo"; jornalista[2].skill.alvo1 = 5; jornalista[2].skill.alvo2 = 0; jornalista[2].skill.alvoR = 0; jornalista[2].skill.alvoT = 0; jornalista[2].skill.alvoI = 0; jornalista[2].skill.pod_baratear = 0; jornalista[2].skill.pod_invoca	= 0; jornalista[2].skill.pod_invoca_alvo; jornalista[2].skill.pod_buffar = 0; jornalista[2].skill.cond_alvomata = 0; jornalista[2].skill.cond_alvomorre = 0; jornalista[2].skill.cond_levadano = 0; professor[2].skill.cond_iniciobatalha = 1; jornalista[2].skill.cond_ataca = 0; jornalista[2].skill.cond_mata = 0; jornalista[2].skill.cond_morre = 0; jornalista[2].skill.dano = 8;
-
+	//Criação das variaveis dos nomes
+	tp_nome_equipe nomeeqp, cpunome;
+	
+	//definição da mão
+	tp_animal m1, m2, m3;
+	
+	//funções de apresentação pra entrega da AV1
+	faznome(&nomeeqp, &cpunome);
+	faz_mao(&m1, &m2, &m3);
+	printf("\n\n");
+	printanome(nomeeqp);
+	printf("\n");
+	printf("%s %s %s", m1.nome, m2.nome, m3.nome);
 }
