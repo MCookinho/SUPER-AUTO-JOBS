@@ -63,6 +63,7 @@ int altura_pilha(tp_pilha *p){
     return p->topo+1;
 }
 
+	//recebe uma pilha e adiciona 3 animais aleatorios nela
 void randomiza_pilha(tp_pilha *p){
 	//Criação dos personagens
 	tp_animal professor[3], jornalista[3], ator[3], arquiteto[3], motorista[3], programador[3];
@@ -241,7 +242,7 @@ void randomiza_pilha(tp_pilha *p){
 		}
 	}
 }
-
+//recebe como parametro as variaveis que representam e recebe a informação da pilha randomizada alocando seus elementos nas variaveis
 void faz_mao(tp_animal *m1, tp_animal *m2, tp_animal *m3){
 	tp_pilha pilha;
 	tp_animal e;
