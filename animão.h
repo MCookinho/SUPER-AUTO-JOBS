@@ -169,7 +169,7 @@ void randomiza_pilha(tp_pilha *p){
 	int i;
 	srand(time(NULL));
 	for(i=0;i<3; i++){
-		switch(rand() % 22){
+		switch(rand() % 23){
 			case 0:
 				push(p, professor[0]);
 				break;
