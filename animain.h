@@ -80,4 +80,30 @@ void printdesc()
     printf("MENDIGO[1]: ganha mais 5 moedas ao vender\nMENDIGO[2]: ganha mais 10 moedas ao vender\nMENDIGO[3]: ganha mais 20 moedas ao vender\n\n");// descricao do Mendigo.
 }
 
+int telaInicio(){
+    int i=0, n;
+    printf("\n\n|============================================|\n");
+    printf("|======> BEM VINDO AO SUPER AUTO-JOBS <======|\n");
+    printf("|============================================|\n");
+    printf("|=========Jogar=================Sair=========|\n");
+    printf("|=================Biblioteca=================|\n");
+    printf("|============================================|\n\n");
+    while (i==0){
+        printf("Digite 1 para Jogar.\n");
+        printf("Digite 2 para Sair.\n");
+        printf("Digite 3 para checar a Biblioteca.\n");
+        scanf("%d", &n);
+        if(n==1){
+            i=1;
+        }
+        if(n==2){
+            return 0;
+        }
+        if(n==3){
+            printdesc();
+        }
+    }
+    return 1;
+}
+
 #endif
