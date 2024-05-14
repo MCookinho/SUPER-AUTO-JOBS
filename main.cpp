@@ -1,6 +1,6 @@
 #include "animain.h"
 #include "randname.h"
-#include "animão.h"
+#include "animao.h"
 #include <string.h>
 
 int main(){
