@@ -7,7 +7,7 @@ typedef struct{
 char nome[15];
 int soma_vida;
 int soma_dano;
-char descricao[50];
+char descricao[100];
 int id;
 }tp_item;
 
@@ -18,6 +18,8 @@ int vida;
 int dano;
 char descricao[50];
 int id;
+int lvl;
+int exp;
 }tp_animal;
 
 //função para atribuir o item ao animal
