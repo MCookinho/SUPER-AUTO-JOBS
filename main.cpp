@@ -6,24 +6,22 @@
 int main(){
 	//Criação das variaveis dos nomes
 	tp_nome_equipe nomeeqp, cpunome;
-	
-	//Variavel do dinheiro da loja
-	int dinhero;
-	
 	//definição da mão
-	tp_animal m1, m2, m3;
-	
+	tp_compra preloja[3];
+	tp_animal mao[5];
+	limpa_mao(mao);
+	//definição da fase e vida
+	int fase, vida;
 	//funções de apresentação pra entrega da AV1
 	if(!telaInicio()){
 		return 0;
 	}
 	
 	faznome(&nomeeqp, &cpunome);
-	faz_loja(&m1, &m2, &m3);
-	printf("\n\n");
+	faz_loja(preloja);
+	escolhe_loja(preloja, mao);
 	printanome(nomeeqp);
 	printf("\n");
 	printanome(cpunome);
 	printf("\n");
-	printf("%s %s %s", m1.nome, m2.nome, m3.nome);
 }
