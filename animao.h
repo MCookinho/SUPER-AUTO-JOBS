@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "animain.h"
-#define MAX 100
 
 typedef struct {
     tp_animal carta[3];
@@ -58,9 +57,9 @@ void faz_loja(tp_compra m1[]){
 	strcpy(advogado[1].nome, "Advogado2"); advogado[1].vida = 5; advogado[1].dano = 5; strcpy(advogado[1].descricao, "ADVOGADO: da 5 de dano a um inimigo aleatorio"); advogado[1].id = 9; advogado[1].lvl = 2; advogado[1].exp = 0;
 	strcpy(advogado[2].nome, "Advogado3"); advogado[2].vida = 8; advogado[2].dano = 8; strcpy(advogado[2].descricao, "ADVOGADO: da 8 de dano a um inimigo aleatorio"); advogado[2].id = 9; advogado[2].lvl = 3; advogado[2].exp = 0;
 	//policial nivel 1 2 e 3 respectivamente por linha
-	strcpy(policial[0].nome, "Policial"); policial[0].vida = 4; policial[0].dano = 4; strcpy(advogado[0].descricao, "POLICIAL: da 2 de dano a TODOS os personagens"); policial[0].id = 22; policial[0].lvl = 1; policial[0].exp = 0;
-	strcpy(policial[1].nome, "Policial2"); policial[1].vida = 6; policial[1].dano = 5; strcpy(advogado[1].descricao, "POLICIAL: da 5 de dano a TODOS os personagens"); policial[1].id = 22; policial[1].lvl = 2; policial[1].exp = 0;
-	strcpy(policial[2].nome, "Policial3"); policial[2].vida = 9; policial[2].dano = 9; strcpy(advogado[2].descricao, "POLICIAL: da 8 de dano a TODOS os personagens"); policial[2].id = 22; policial[2].lvl = 3; policial[2].exp = 0;
+	strcpy(policial[0].nome, "Policial"); policial[0].vida = 4; policial[0].dano = 4; strcpy(policial[0].descricao, "POLICIAL: da 2 de dano a TODOS os personagens"); policial[0].id = 22; policial[0].lvl = 1; policial[0].exp = 0;
+	strcpy(policial[1].nome, "Policial2"); policial[1].vida = 6; policial[1].dano = 5; strcpy(policial[1].descricao, "POLICIAL: da 5 de dano a TODOS os personagens"); policial[1].id = 22; policial[1].lvl = 2; policial[1].exp = 0;
+	strcpy(policial[2].nome, "Policial3"); policial[2].vida = 9; policial[2].dano = 9; strcpy(policial[2].descricao, "POLICIAL: da 8 de dano a TODOS os personagens"); policial[2].id = 22; policial[2].lvl = 3; policial[2].exp = 0;
 	//vendedor nivel 1 2 e 3 respectivamente por linha
 	strcpy(vendedor[0].nome, "Vendedor"); vendedor[0].vida = 2; vendedor[0].dano = 1; strcpy(vendedor[0].descricao, "VENDEDOR: ganha mais 2 moedas no fim da batalha"); vendedor[0].id = 23; vendedor[0].lvl = 1; vendedor[0].exp = 0;
 	strcpy(vendedor[1].nome, "Vendedor2"); vendedor[1].vida = 5; vendedor[1].dano = 4; strcpy(vendedor[1].descricao, "VENDEDOR: ganha mais 4 moedas no fim da batalha"); vendedor[1].id = 23; vendedor[1].lvl = 2; vendedor[1].exp = 0;
@@ -244,13 +243,28 @@ void faz_loja(tp_compra m1[]){
 }
 
 
-void escolhe_loja(tp_compra m1[], tp_animal mao[]){
+void escolhe_loja(tp_compra m1[], tp_compra mao[], int vidajogador){
 	
 	int esc=0, subloja, submao, i, j;
 	int dinheiro = 10;
 	tp_animal troca;
 	
 	while(esc != 6){
+		
+	//define o nivel caso bata o exp
+	for(i=0;i<5;i++){
+		if(mao[i].carta[0].lvl != 3){
+			if(mao[i].carta[0].lvl == 1 && mao[i].carta[0].exp >= 2){
+				mao[i].carta[1].exp = (mao[i].carta[0].exp - 2);
+				mao[i].carta[0]= mao[i].carta[1];
+				}
+			if(mao[i].carta[0].lvl == 2 && mao[i].carta[0].exp >= 3){
+				mao[i].carta[0]= mao[submao-1].carta[2];
+				}
+			}
+	}
+	
+	
 	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	for(i=0;i<3;i++){
 		if(m1[i].carta[0].id == 0){
@@ -260,8 +274,8 @@ void escolhe_loja(tp_compra m1[], tp_animal mao[]){
 	}
 
 		for(i=0;i<5;i++){
-			if(mao[i].id == 0)
-				strcpy(mao[i].nome, "___");
+			if(mao[i].carta[0].id == 0)
+				strcpy(mao[i].carta[0].nome, "_____");
 }
 
 	if(esc == 2){
@@ -275,24 +289,24 @@ void escolhe_loja(tp_compra m1[], tp_animal mao[]){
 			}
 			printf("\n\n\n\nDECK:\n\n");
 			for(i=0;i<5;i++){
-			if(mao[i].id != 0 && mao[i].lvl == 1){
-				puts(mao[i].descricao);
-				printf("DANO: %d , VIDA: %d, exp: %d/2 \n\n", mao[i].dano, mao[i].vida, mao[i].exp);
+			if(mao[i].carta[0].id != 0 && mao[i].carta[0].lvl == 1){
+				puts(mao[i].carta[0].descricao);
+				printf("DANO: %d , VIDA: %d, exp: %d/2 \n\n", mao[i].carta[0].dano, mao[i].carta[0].vida, mao[i].carta[0].exp);
 			}
-				else if(mao[i].id != 0 && mao[i].lvl == 2){
-					puts(mao[i].descricao);
-					printf("DANO: %d , VIDA: %d, EXP: %d/3 \n\n", mao[i].dano, mao[i].vida, mao[i].exp);
+				else if(mao[i].carta[0].id != 0 && mao[i].carta[0].lvl == 2){
+					puts(mao[i].carta[0].descricao);
+					printf("DANO: %d , VIDA: %d, EXP: %d/3 \n\n", mao[i].carta[0].dano, mao[i].carta[0].vida, mao[i].carta[0].exp);
 				}
-				else if(mao[i].id != 0 && mao[i].lvl == 3){
-					puts(mao[i].descricao);
-					printf("DANO: %d , VIDA: %d\n\n", mao[i].dano, mao[i].vida);
+				else if(mao[i].carta[0].id != 0 && mao[i].carta[0].lvl == 3){
+					puts(mao[i].carta[0].descricao);
+					printf("DANO: %d , VIDA: %d\n\n", mao[i].carta[0].dano, mao[i].carta[0].vida);
 				}
 			}
 			printf("\n\n\n\n\n\n");
 		}	
 				
-	printf("Dinheiro: %d\n", dinheiro);
-	printf("%s %s %s %s %s \n\n", mao[4], mao[3], mao[2], mao[1], mao[0]);
+	printf("Dinheiro: %d                                                 Vida: %d\n\n", dinheiro, vidajogador);
+	printf("              %s   %s   %s   %s   %s \n\n", mao[4].carta[0].nome, mao[3].carta[0].nome, mao[2].carta[0].nome, mao[1].carta[0].nome, mao[0].carta[0].nome);
 	printf("%s %s %s \n", m1[0].carta[0].nome, m1[1].carta[0].nome, m1[2].carta[0].nome);
 	
 	printf("1 para contratar, 2 para ler a descricao, 3 rerolar, 4 para vender, 5 para reposicionar, 6 para batalhar: ");
@@ -303,21 +317,15 @@ void escolhe_loja(tp_compra m1[], tp_animal mao[]){
 		if(subloja < 4 && subloja > 0 && m1[subloja-1].carta[0].id!=0){
 			printf("a posicao que voce quer colocar: ");
 			scanf("%d", &submao);
-			if(submao < 6 && submao > 0 && mao[submao-1].id == 0){
-				mao[submao-1]= m1[subloja-1].carta[0];
+			if(submao < 6 && submao > 0 && mao[submao-1].carta[0].id == 0){
+				mao[submao-1]= m1[subloja-1];
 				m1[subloja-1].carta[0].id = 0;
 				dinheiro-=3;
 			}
-			else if(submao < 6 && submao > 0 && mao[submao-1].id == m1[subloja-1].carta[0].id && mao[submao-1].lvl != 3){
-				mao[submao-1].exp += 1;
+			else if(submao < 6 && submao > 0 && mao[submao-1].carta[0].id == m1[subloja-1].carta[0].id && mao[submao-1].carta[0].lvl != 3){
+				mao[submao-1].carta[0].exp += 1;
 				m1[subloja-1].carta[0].id = 0;
 				dinheiro-=3;
-				if(mao[submao-1].lvl == 1 && mao[submao-1].exp == 2){
-					mao[submao-1]= m1[subloja-1].carta[1];
-				}
-				else if(mao[submao-1].lvl == 2 && mao[submao-1].exp == 3){
-					mao[submao-1]= m1[subloja-1].carta[2];
-				}
 			}
 		}
 	}
@@ -326,43 +334,52 @@ void escolhe_loja(tp_compra m1[], tp_animal mao[]){
 		faz_loja(m1);
 		dinheiro -= 1;
 	}
+	
 	if(esc == 4){
 		printf("digite qual voce quer vender: ");
 		scanf("%d", &subloja);
-		if (mao[subloja-1].id != 0 && subloja>=1 && subloja<=5){
-			if(mao[subloja-1].id == 21 && mao[subloja-1].lvl == 1){
+		if (mao[subloja-1].carta[0].id != 0 && subloja>=1 && subloja<=5){
+			if(mao[subloja-1].carta[0].id == 21 && mao[subloja-1].carta[0].lvl == 1){
 				dinheiro += 6;
-				mao[subloja-1].id = 0;}
-			else if (mao[subloja-1].id == 21 && mao[subloja-1].lvl == 2){
+				mao[subloja-1].carta[0].id = 0;}
+			else if (mao[subloja-1].carta[0].id == 21 && mao[subloja-1].carta[0].lvl == 2){
 				dinheiro += 11;
-				mao[subloja-1].id = 0;}
-			else if (mao[subloja-1].id == 21 && mao[subloja-1].lvl == 3){
+				mao[subloja-1].carta[0].id = 0;}
+			else if (mao[subloja-1].carta[0].id == 21 && mao[subloja-1].carta[0].lvl == 3){
 				dinheiro += 21;
-				mao[subloja-1].id = 0;}
+				mao[subloja-1].carta[0].id = 0;}
 			else{
 				dinheiro += 1;
-				mao[subloja-1].id = 0;}
+				mao[subloja-1].carta[0].id = 0;}
 			}
 		}
+		
 	if(esc == 5){
 		printf("digite quais posicoes voce quer trocar: ");
 		scanf("%d %d", &subloja , &submao);
-		if (subloja != submao && subloja > 0 && submao > 0 && subloja < 6 && subloja < 6){
-			troca = mao[subloja-1];
-			mao[subloja-1] = mao[submao-1];
-			mao[submao-1] = troca;
+		if (mao[subloja-1].carta[0].id == mao[submao-1].carta[0].id && subloja != submao && subloja > 0 && submao > 0 && subloja < 6 && subloja < 6){
+			mao[submao-1].carta[0].exp += (1+mao[subloja-1].carta[0].exp);
+			mao[subloja-1].carta[0].id = 0;
 		}
+		else if (subloja != submao && subloja > 0 && submao > 0 && subloja < 6 && subloja < 6){
+			troca = mao[subloja-1].carta[0];
+			mao[subloja-1].carta[0] = mao[submao-1].carta[0];
+			mao[submao-1].carta[0] = troca;
+		}	
 		
 	}
 	}
+	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 }
 
 
 
-void limpa_mao(tp_animal mao[]){
+void limpa_mao(tp_compra mao[]){
 	int i;
 	for(i=0;i<5;i++){
-		mao[i].id = 0;
+		mao[i].carta[0].id = 0;
+		mao[i].carta[1].id = 0;
+		mao[i].carta[2].id = 0;
 	}
 }
 
