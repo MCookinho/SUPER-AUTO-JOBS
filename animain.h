@@ -13,10 +13,10 @@ int id;
 
 //Estrutura dos animais
 typedef struct{
-char nome[15];
+char nome[20];
 int vida;
 int dano;
-char descricao[50];
+char descricao[70];
 int id;
 int lvl;
 int exp;
