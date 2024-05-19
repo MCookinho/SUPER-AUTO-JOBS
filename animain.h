@@ -82,6 +82,11 @@ void printdesc()
     printf("MENDIGO[1]: ganha mais 5 moedas ao vender\nMENDIGO[2]: ganha mais 10 moedas ao vender\nMENDIGO[3]: ganha mais 20 moedas ao vender\n\n");// descricao do Mendigo.
 }
 
+void printcred(){
+    printf("================================CREDITOS================================\n");
+    printf("                             ~Joao Pedro Borges~\n                             ~Joao Pedro Goes~\n                             ~Rafael Guerra~\n                             ~Joao Pedro Guimaraes~\n");
+}
+
 int telaInicio(){
     int i=0, n;
     printf("\n\n|============================================|\n");
@@ -94,6 +99,7 @@ int telaInicio(){
         printf("Digite 1 para Jogar.\n");
         printf("Digite 2 para Sair.\n");
         printf("Digite 3 para checar a Biblioteca.\n");
+        printf("Digite 4 para ver os creditos\n");
         scanf("%d", &n);
         if(n==1){
             i=1;
@@ -104,6 +110,11 @@ int telaInicio(){
         if(n==3){
             printdesc();
         }
+        if (n==4)
+        {
+            printcred();
+        }
+        
     }
     return 1;
 }
