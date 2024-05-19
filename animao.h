@@ -55,9 +55,9 @@ void faz_loja(tp_compra m1[]){
     {"Medico3", 8, 8, "MEDICO: cura o da frente em 3 por turno", 8, 3, 0}
 };
     tp_animal advogado[3] = {
-    {"Advogado", 3, 4, "ADVOGADO: da 2 de dano a um inimigo aleatorio", 9, 1, 0},
-    {"Advogado2", 5, 5, "ADVOGADO: da 5 de dano a um inimigo aleatorio", 9, 2, 0},
-    {"Advogado3", 8, 8, "ADVOGADO: da 8 de dano a um inimigo aleatorio", 9, 3, 0}
+    {"Advogado", 3, 4, "ADVOGADO: da 2 de dano ao primeiro inimigo", 9, 1, 0},
+    {"Advogado2", 5, 5, "ADVOGADO: da 5 de dano ao primeiro inimigo", 9, 2, 0},
+    {"Advogado3", 8, 8, "ADVOGADO: da 8 de dano ao primeiro inimigo", 9, 3, 0}
 };
     tp_animal policial[3] = {
     {"Policial", 4, 4, "POLICIAL: da 2 de dano a TODOS os personagens", 22, 1, 0},
@@ -75,9 +75,9 @@ void faz_loja(tp_compra m1[]){
     {"GuardaCostas3", 10, 8, "GUARDA COSTAS: da 3 de vida para o de tras a cada dano que levar", 10, 3, 0}
 };
     tp_animal filhododono[3] = {
-    {"FilhoDoDono", 1, 1, "FILHO DO DONO: da 5 de vida a todos os aliados", 11, 1, 0},
-    {"FilhoDoDono2", 2, 2, "FILHO DO DONO: da 10 de vida a todos os aliados", 11, 2, 0},
-    {"FilhoDoDono3", 3, 3, "FILHO DO DONO: da 15 de vida a todos os aliados", 11, 3, 0}
+    {"FilhoDoDono", 1, 1, "FILHO DO DONO: da 5 de vida a todos os aliados e vai dormir", 11, 1, 0},
+    {"FilhoDoDono2", 2, 2, "FILHO DO DONO: da 10 de vida a todos os aliados e vai dormir", 11, 2, 0},
+    {"FilhoDoDono3", 3, 3, "FILHO DO DONO: da 15 de vida a todos os aliados e vai dormir", 11, 3, 0}
 };
     tp_animal bombeiro[3] = {
     {"Bombeiro", 5, 2, "BOMBEIRO: acrescenta 1 de dano a todos os aliados", 12, 1, 0},
@@ -90,9 +90,9 @@ void faz_loja(tp_compra m1[]){
     {"Atendente3", 10, 8, "ATENDENTE: dobra o dano do aliado mais da frente", 13, 3, 0}
 };
     tp_animal fotografo[3] = {
-    {"Fotografo", 1, 1, "FOTOGRAFO: da instakill", 14, 1, 0},
-    {"Fotografo2", 1, 1, "FOTOGRAFO: da instakill", 14, 2, 0},
-    {"Fotografo3", 2, 2, "FOTOGRAFO: da instakill", 14, 3, 0}
+    {"Fotografo", 1, 1, "FOTOGRAFO: depende...", 14, 1, 0},
+    {"Fotografo2", 1, 1, "FOTOGRAFO: depende...", 14, 2, 0},
+    {"Fotografo3", 2, 2, "FOTOGRAFO: depende...", 14, 3, 0}
 };
     tp_animal mecanico[3] = {
     {"Mecanico", 2, 3, "MECANICO: invoca um carro 3/3", 15, 1, 0},
@@ -372,7 +372,7 @@ void escolhe_loja(tp_compra mao[], int vidajogador){
 	
 	if(esc == 3 && dinheiro >=1){
 		faz_loja(m1);
-		//dinheiro -= 1;
+		dinheiro -= 1;
 	}
 	
 	if(esc == 4){
