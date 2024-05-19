@@ -84,17 +84,17 @@ void printdesc()
 
 void printcred(){
     printf("================================CREDITOS================================\n");
-    printf("                             ~Joao Pedro Borges~\n                             ~Joao Pedro Goes~\n                             ~Rafael Guerra~\n                             ~Joao Pedro Guimaraes~\n");
+    printf("                            ~Joao Pedro Borges~\n                            ~Joao Pedro Goes~\n                            ~Rafael Guerra~\n                            ~Joao Pedro Guimaraes~\n");
 }
 
 int telaInicio(){
     int i=0, n;
-    printf("\n\n|============================================|\n");
-    printf("|======> BEM VINDO AO SUPER AUTO-JOBS <======|\n");
-    printf("|============================================|\n");
-    printf("|=========Jogar=================Sair=========|\n");
-    printf("|=================Biblioteca=================|\n");
-    printf("|============================================|\n\n");
+    printf("\n\n             |============================================|\n");
+    printf("             |======> BEM VINDO AO SUPER AUTO-JOBS <======|\n");
+    printf("             |============================================|\n");
+    printf("             |=========Jogar=================Sair=========|\n");
+    printf("             |=================Biblioteca=================|\n");
+    printf("             |============================================|\n\n");
     while (i==0){
         printf("Digite 1 para Jogar.\n");
         printf("Digite 2 para Sair.\n");
