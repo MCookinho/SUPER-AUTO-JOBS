@@ -13,8 +13,7 @@ typedef struct {
 
 
 void faz_loja(tp_compra m1[]){
-	//Criação dos personagens
-	//Definição da habilidade de cada personagem
+	//Definição de cada personagem
 	tp_animal professor[3] = {
     {"Professor", 2, 2, "PROFESSOR: adiciona 1 de dano aos invocados", 1, 1, 0},
     {"Professor2", 4, 4, "PROFESSOR: adiciona 2 de dano e 2 de vida aos invocados", 1, 2, 0},
@@ -130,6 +129,7 @@ void faz_loja(tp_compra m1[]){
     {"Mendigo2", 6, 7, "MENDIGO: ganha mais 10 moedas ao vender", 21, 2, 0},
     {"Mendigo3", 10, 10, "MENDIGO: ganha mais 20 moedas ao vender", 21, 3, 0}
 };
+	
 	
 	int i, aux;
 	srand(time(NULL));
@@ -260,11 +260,34 @@ void faz_loja(tp_compra m1[]){
 }
 
 
-void escolhe_loja(tp_compra m1[], tp_compra mao[], int vidajogador){
+void escolhe_loja(tp_compra mao[], int vidajogador){
 	
 	int esc=0, subloja, submao, i, j;
 	int dinheiro = 10;
+	tp_compra m1[3];
 	tp_animal troca;
+	faz_loja(m1);
+	
+	for(i=0;i<5;i++){
+		if(mao[i].carta[0].id == 19){
+			if(mao[i].carta[0].lvl == 1)
+				dinheiro += 1;
+			else if(mao[i].carta[0].lvl == 2)
+				dinheiro += 3;
+			else if(mao[i].carta[0].lvl == 3)
+				dinheiro += 8;
+			}
+		
+		if(mao[i].carta[0].id == 23){
+			if(mao[i].carta[0].lvl == 1)
+				dinheiro += 2;
+			else if(mao[i].carta[0].lvl == 2)
+				dinheiro += 4;
+			else if(mao[i].carta[0].lvl == 3)
+				dinheiro += 6;
+		}
+		
+	}
 	
 	while(esc != 6){
 		
@@ -349,7 +372,7 @@ void escolhe_loja(tp_compra m1[], tp_compra mao[], int vidajogador){
 	
 	if(esc == 3 && dinheiro >=1){
 		faz_loja(m1);
-		dinheiro -= 1;
+		//dinheiro -= 1;
 	}
 	
 	if(esc == 4){
