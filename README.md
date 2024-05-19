@@ -1,7 +1,7 @@
 # What is that?
 
 - A small project made for a college assignment.
-- Its a remake of SUPER AUTO PETS maded in C lang
+- Its a remake of SUPER AUTO PETS, maded in C lang
 
 
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
