@@ -3,6 +3,8 @@
 - A small project made for a college assignment.
 - Its a remake of SUPER AUTO PETS, maded in C lang
 
+- it's all in PT-BR btw
+
 
 
 
