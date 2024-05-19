@@ -6,7 +6,7 @@
 int main(){
 	//Criacao das variaveis dos nomes
 	tp_nome_equipe nomeeqp, cpunome;
-	//definiÃ§Ã£o da mÃ£o
+	//definicao da mao
 	tp_compra mao[5];
 	limpa_mao(mao);
 	//definicao da fase e vida
