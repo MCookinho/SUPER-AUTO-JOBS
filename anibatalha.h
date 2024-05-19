@@ -127,7 +127,7 @@ void imprimeFilaStatsPlayer(tp_fila f ){
 }
 
 
-//duas opÃ§Ãµes de codigo do tamanho_fila
+//duas opcoes de codigo do tamanho_fila
 int tamanho_Fila(tp_fila *f){
     if(filaVazia(f)) return 0;
     if(f->ini < f->fim) return f->fim - f->ini;
@@ -204,27 +204,27 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 	
 	
 	for(i=0; i<5; i++){ //verifica se tem professor
-		if(cpu[i].id == 6){
-			if(cpu[i].lvl == 1){
-				bprofcpu=1;
+		if(cpu[i].id == 1){
+			if(cpu[i].lvl == 3){
+				bprofcpu=3;
 			}
 			else if(cpu[i].lvl == 2){
 				bprofcpu=2;
 			}
-			else if(cpu[i].lvl == 3){
-				bprofcpu=3;
+			else if(cpu[i].lvl == 1){
+				bprofcpu=1;
 			}	
 			
 		}
 		if(mao[i].id == 6){
-			if(mao[i].lvl == 1){
-				bprofplayer=1;
+			if(mao[i].lvl == 3){
+				bprofplayer=3;
 			}
 			else if(mao[i].lvl == 2){
 				bprofplayer=2;
 			}
-			else if(mao[i].lvl == 3){
-				bprofplayer=3;
+			else if(mao[i].lvl == 1){
+				bprofplayer=1;
 			}	
 			
 		}
@@ -403,6 +403,22 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 					}
 					mao[i] = carro;
 					printf("Motorista invocou um carro, ");
+					
+					if(bprofplayer != 0){
+						if(bprofplayer == 1){
+							mao[i].dano += 1;
+							printf("Professor adicionou 1 de dano ao invocado, ");
+						}
+						else if(bprofplayer == 2){
+							mao[i].dano += 2;
+							mao[i].vida += 2;
+							printf("Professor adicionou 2 de dano e 2 de vida ao invocado, ");
+						}
+						else if(bprofplayer == 3){
+							mao[i].dano += 4;
+							mao[i].vida += 3;
+							printf("Professor adicionou 4 de dano e 3 de vida ao invocado, ");
+						}}
 			}
 				if(mao[i].id == 15 ){
 					tp_animal carro;
@@ -418,6 +434,22 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 					}
 					mao[i] = carro;
 					printf("Mecanico invocou um carro, ");
+					
+					if(bprofplayer != 0){
+						if(bprofplayer == 1){
+							mao[i].dano += 1;
+							printf("Professor adicionou 1 de dano ao invocado, ");
+						}
+						else if(bprofplayer == 2){
+							mao[i].dano += 2;
+							mao[i].vida += 2;
+							printf("Professor adicionou 2 de dano e 2 de vida ao invocado, ");
+						}
+						else if(bprofplayer == 3){
+							mao[i].dano += 4;
+							mao[i].vida += 3;
+							printf("Professor adicionou 4 de dano e 3 de vida ao invocado, ");
+						}}
 			}	
 				if(mao[i].id == 16 ){
 					if(mao[i].lvl == 1){
@@ -456,10 +488,41 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 						mao[i] = rngbio[0].carta[2];
 						printf("Biologo invocou um aliado, ");
 					}	
+					
+					if(bprofplayer != 0){
+						if(bprofplayer == 1){
+							mao[i].dano += 1;
+							printf("Professor adicionou 1 de dano ao invocado, ");
+						}
+						else if(bprofplayer == 2){
+							mao[i].dano += 2;
+							mao[i].vida += 2;
+							printf("Professor adicionou 2 de dano e 2 de vida ao invocado, ");
+						}
+						else if(bprofplayer == 3){
+							mao[i].dano += 4;
+							mao[i].vida += 3;
+							printf("Professor adicionou 4 de dano e 3 de vida ao invocado, ");
+						}}
 			}
 				if(mao[i].id == 3){
 					mao[i] = duble_player;
 					printf("Ator invocou um duble, ");
+					if(bprofplayer != 0){
+						if(bprofplayer == 1){
+							mao[i].dano += 1;
+							printf("Professor adicionou 1 de dano ao invocado, ");
+						}
+						else if(bprofplayer == 2){
+							mao[i].dano += 2;
+							mao[i].vida += 2;
+							printf("Professor adicionou 2 de dano e 2 de vida ao invocado, ");
+						}
+						else if(bprofplayer == 3){
+							mao[i].dano += 4;
+							mao[i].vida += 3;
+							printf("Professor adicionou 4 de dano e 3 de vida ao invocado, ");
+						}}
 				}
 
 			}
@@ -696,6 +759,22 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 					}
 					cpu[i] = carro;
 					printf("Motorista invocou um carro, ");
+					
+					if(bprofcpu != 0){
+						if(bprofcpu == 1){
+							cpu[i].dano += 1;
+							printf("Professor adicionou 1 de dano ao invocado, ");
+						}
+						else if(bprofcpu == 2){
+							cpu[i].dano += 2;
+							cpu[i].vida += 2;
+							printf("Professor adicionou 2 de dano e 2 de vida ao invocado, ");
+						}
+						else if(bprofcpu == 3){
+							cpu[i].dano += 4;
+							cpu[i].vida += 3;
+							printf("Professor adicionou 4 de dano e 3 de vida ao invocado, ");
+						}}
 			}
 				if(cpu[i].id == 15 ){
 					tp_animal carro;
@@ -711,6 +790,22 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 					}
 					cpu[i] = carro;
 					printf("Mecanico invocou um carro, ");
+					
+					if(bprofcpu != 0){
+						if(bprofcpu == 1){
+							cpu[i].dano += 1;
+							printf("Professor adicionou 1 de dano ao invocado, ");
+						}
+						else if(bprofcpu == 2){
+							cpu[i].dano += 2;
+							cpu[i].vida += 2;
+							printf("Professor adicionou 2 de dano e 2 de vida ao invocado, ");
+						}
+						else if(bprofcpu == 3){
+							cpu[i].dano += 4;
+							cpu[i].vida += 3;
+							printf("Professor adicionou 4 de dano e 3 de vida ao invocado, ");
+						}}
 			}	
 				if(cpu[i].id == 16 ){
 					if(cpu[i].lvl == 1){
@@ -749,10 +844,42 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 						cpu[i] = rngbio[0].carta[2];
 						printf("Biologo invocou um aliado, ");
 					}	
+					
+					if(bprofcpu != 0){
+						if(bprofcpu == 1){
+							cpu[i].dano += 1;
+							printf("Professor adicionou 1 de dano ao invocado, ");
+						}
+						else if(bprofcpu == 2){
+							cpu[i].dano += 2;
+							cpu[i].vida += 2;
+							printf("Professor adicionou 2 de dano e 2 de vida ao invocado, ");
+						}
+						else if(bprofcpu == 3){
+							cpu[i].dano += 4;
+							cpu[i].vida += 3;
+							printf("Professor adicionou 4 de dano e 3 de vida ao invocado, ");
+						}}
 			}
 				if(cpu[i].id == 3){
 					cpu[i] = duble_player;
 					printf("Ator invocou um duble, ");
+					
+					if(bprofcpu != 0){
+						if(bprofcpu == 1){
+							cpu[i].dano += 1;
+							printf("Professor adicionou 1 de dano ao invocado, ");
+						}
+						else if(bprofcpu == 2){
+							cpu[i].dano += 2;
+							cpu[i].vida += 2;
+							printf("Professor adicionou 2 de dano e 2 de vida ao invocado, ");
+						}
+						else if(bprofcpu == 3){
+							cpu[i].dano += 4;
+							cpu[i].vida += 3;
+							printf("Professor adicionou 4 de dano e 3 de vida ao invocado, ");
+						}}
 				}
 
 			}
@@ -873,6 +1000,19 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 					malware.dano=5;
 					mao[i] = malware;
 				}
+				
+				if(bprofplayer != 0){
+						if(bprofplayer == 1){
+							mao[i].dano += 1;
+						}
+						else if(bprofplayer == 2){
+							mao[i].dano += 2;
+							mao[i].vida += 2;
+						}
+						else if(bprofplayer == 3){
+							mao[i].dano += 4;
+							mao[i].vida += 3;
+						}}
 			}
 			else{
 			mao[i].id = 0;}
@@ -897,6 +1037,19 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 					malware.dano=5;
 					cpu[i] = malware;
 				}
+				
+				if(bprofcpu != 0){
+						if(bprofcpu == 1){
+							cpu[i].dano += 1;
+						}
+						else if(bprofcpu == 2){
+							cpu[i].dano += 2;
+							cpu[i].vida += 2;
+						}
+						else if(bprofcpu == 3){
+							cpu[i].dano += 4;
+							cpu[i].vida += 3;
+						}}
 			}
 			else{
 			cpu[i].id = 0;}
