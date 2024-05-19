@@ -497,7 +497,7 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 				}
 			}
 			
-			if(mao[0].id == 10){ 
+			if(mao[0].id == 10 && i==0){ 
 				if(mao[i].lvl == 1){
 					mao[1].vida += 1;
 					printf("Guarda-Costas curou o de tras em 1, ");
@@ -510,6 +510,18 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 					mao[1].vida += 3;
 					printf("Guarda-Costas curou o de tras em 2, ");
 				}	
+			}
+			
+			if(mao[i].id == 11){
+				if(mao[i].lvl == 1 && turno > 1){
+					printf("Filho do dono foi dormir, ");
+					mao[i].id = 0;}
+				if(mao[i].lvl == 2 && turno > 2){
+					printf("Filho do dono foi dormir, ");
+					mao[i].id = 0;}
+				if(mao[i].lvl == 3 && turno > 3){
+					printf("Filho do dono foi dormir, ");
+					mao[i].id = 0;}
 			}
 	}
 	//habilidades da cpu
@@ -778,7 +790,7 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 				}
 			}
 			
-			if(cpu[0].id == 10){
+			if(cpu[0].id == 10 && i==0){
 				if(cpu[i].lvl == 1){
 					cpu[1].vida += 1;
 					printf("Guarda-Costas curou o de tras em 1, ");
@@ -791,6 +803,18 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 					cpu[1].vida += 3;
 					printf("Guarda-Costas curou o de tras em 2, ");
 				}	
+			}
+			
+			if(cpu[i].id == 11){
+				if(cpu[i].lvl == 1 && turno > 1){
+					printf("Filho do dono foi dormir, ");
+					cpu[i].id = 0;}
+				if(cpu[i].lvl == 2 && turno > 2){
+					printf("Filho do dono foi dormir, ");
+					cpu[i].id = 0;}
+				if(cpu[i].lvl == 3 && turno > 3){
+					printf("Filho do dono foi dormir, ");
+					cpu[i].id = 0;}
 			}
 		
 	}
@@ -935,11 +959,11 @@ void batalha(tp_compra mao[], tp_nome_equipe nomeplayer, tp_nome_equipe nomecpu,
 	
 	printf("\n\n\n\n\n\n\n\n\n");
 	
-	if(filaVazia(&filajogador) && frentejogador.vida <= 0 && (!filaVazia(&filacpu) || frenteoponente.vida >= 0)){
+	if(filaVazia(&filajogador) && frentejogador.vida <= 0 && (!filaVazia(&filacpu) || frenteoponente.vida > 0)){
 		*vidaplayer -= 1;
 		printf("OPONENTE GANHOU!!!");
 	}
-	else if(filaVazia(&filacpu) && frenteoponente.vida <= 0 && (!filaVazia(&filajogador) || frentejogador.vida >= 0)){
+	else if(filaVazia(&filacpu) && frenteoponente.vida <= 0 && (!filaVazia(&filajogador) || frentejogador.vida > 0)){
 		*vidacpu -= 1;
 		printf("VOCE GANHOU!!!");
 	}
