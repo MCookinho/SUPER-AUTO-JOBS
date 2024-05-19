@@ -12,6 +12,19 @@ typedef struct{
 	char adjetivo[50];
 }tp_nome_equipe;
 
+// não precisa de uma quantidade máxima de caracteres, ponteiro
+const char *substantivos[13] = {
+    "Queridos", "Guaxinins", "Humanos", "Comiloes", "Pinguins",
+    "La ele", "Coelhos", "Tigres", "Vencedores", "Perdedores",
+    "Alunos", "Ratos", "Estranhos"
+};
+
+const char *adjetivos[13] = {
+    "assombrosos", "lindos", "feios", "da silva", "loucos",
+    "do grau", "muito estranhos", "e tals", "peidoes", "chatos",
+    "legais", "esquisitos", "brasileiros"
+};
+
 void faznome(tp_nome_equipe *pnome, tp_nome_equipe *cpunome){
 	printf("\n\n|============================================|\n");
 	printf("|======>        NOME DA EQUIPE        <======|\n");
@@ -45,89 +58,8 @@ void faznome(tp_nome_equipe *pnome, tp_nome_equipe *cpunome){
 			rng_adj[i]= (rand() % 12);
 		}
 		
-		switch(rng_sub[i]){ //calculo dos substantivos
-			case 0:
-				strcpy(temp[i].substantivo, "Queridos");
-				break;
-			case 1:
-				strcpy(temp[i].substantivo, "Guaxinins");
-				break;
-			case 2:
-				strcpy(temp[i].substantivo, "Humanos");
-				break;
-			case 3:
-				strcpy(temp[i].substantivo, "Comiloes");
-				break;
-			case 4:
-				strcpy(temp[i].substantivo, "Pinguins");
-				break;
-			case 5:
-				strcpy(temp[i].substantivo, "La ele");
-				break;
-			case 6:
-				strcpy(temp[i].substantivo, "Coelhos");
-				break;
-			case 7:
-				strcpy(temp[i].substantivo, "Tigres");
-				break;
-			case 8:
-				strcpy(temp[i].substantivo, "Vencedores");
-				break;
-			case 9:
-				strcpy(temp[i].substantivo, "Perdedores");
-				break;
-			case 10:
-				strcpy(temp[i].substantivo, "Alunos");
-				break;
-			case 11:
-				strcpy(temp[i].substantivo, "Ratos");
-				break;
-			case 12:
-				strcpy(temp[i].substantivo, "Estranhos");
-				break;
-		}
-		switch(rng_adj[i]){ //calculo adjetivos
-			case 0:
-				strcpy(temp[i].adjetivo, "assombrosos");
-				break;
-			case 1:
-				strcpy(temp[i].adjetivo, "lindos");
-				break;
-			case 2:
-				strcpy(temp[i].adjetivo, "feios");
-				break;
-			case 3:
-				strcpy(temp[i].adjetivo, "da silva");
-				break;
-			case 4:
-				strcpy(temp[i].adjetivo, "loucos");
-				break;
-			case 5:
-				strcpy(temp[i].adjetivo, "do grau");
-				break;
-			case 6:
-				strcpy(temp[i].adjetivo, "muito estranhos");
-				break;
-			case 7:
-				strcpy(temp[i].adjetivo, "e tals");
-				break;
-			case 8:
-				strcpy(temp[i].adjetivo, "peidoes");
-				break;
-			case 9:
-				strcpy(temp[i].adjetivo, "chatos");
-				break;
-			case 10:
-				strcpy(temp[i].adjetivo, "legais");
-				break;
-			case 11:
-				strcpy(temp[i].adjetivo, "esquisitos");
-				break;
-			case 12:
-				strcpy(temp[i].adjetivo, "brasileiros");
-				break;
-			
-		}
+		strcpy(temp[i].substantivo, substantivos[rng_sub[i]]);
+		strcpy(temp[i].adjetivo, adjetivos[rng_adj[i]]);
 	}
 	
 	//coloca o nome temporario no nome da CPU
@@ -150,8 +82,6 @@ void faznome(tp_nome_equipe *pnome, tp_nome_equipe *cpunome){
 	strcpy(pnome->substantivo , temp[numsub-1].substantivo);
 	strcpy(pnome->adjetivo , temp[numadj-1].adjetivo);
 }
-
-
 
 //funçao para printar o nome
 void printanome(tp_nome_equipe nome){
