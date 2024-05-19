@@ -13,16 +13,16 @@ int id;
 
 //Estrutura dos animais
 typedef struct{
-char nome[20];
+char nome[15];
 int vida;
 int dano;
-char descricao[70];
+char descricao[100];
 int id;
 int lvl;
 int exp;
 }tp_animal;
 
-//função para atribuir o item ao animal
+//funÃ§Ã£o para atribuir o item ao animal
 void da_item(tp_animal *b, tp_item item){
 int i;
 for(i=0; i<3; i++){
@@ -41,17 +41,17 @@ void printdesc()
 
     printf("ATOR[1]: invoca um duble com a mesma vida e dano do ator\nATOR[2]: invoca um duble com a mesma vida e dano do ator\nATOR[3]: invoca dois dubles com a mesma vida e dano do ator\n\n");// descricao do Ator.
 
-    printf("ARQUITETO[1]: da 2 de vida aos 2 aliados atrás dele\nARQUITETO[2]: da 4 de vida aos 2 aliados atrás dele\nARQUITETO[3]: da 6 de vida aos 2 aliados atrás dele\n\n");// descricao do Arquiteto.
+    printf("ARQUITETO[1]: da 2 de vida aos 2 aliados atras dele\nARQUITETO[2]: da 4 de vida aos 2 aliados atras dele\nARQUITETO[3]: da 6 de vida aos 2 aliados atras dele\n\n");// descricao do Arquiteto.
 
     printf("MOTORISTA[1]: invoca um carro 5/5\nMOTORISTA[2]: invoca um carro 8/8\nMOTORISTA[3]: invoca um carro 12/12\n\n");// descricao do Motorista.
 
     printf("PROGRAMADOR[1]: invoca um malware 1/1 em um aliado que morreu\nPROGRAMADOR[2]: invoca um malware 3/3 em um aliado que morreu\nPROGRAMADOR[3]: invoca um malware 5/5 em um aliado que morreu\n\n");// descricao do Programador.
 
-    printf("FAZENDEIRO[1]: da uma pera de graça no fim da batalha\nFAZENDEIRO[2]: da uma banana de graça no fim da batalha\nFAZENDEIRO[3]: da um caviar de graça no fim da batalha\n\n");// descricao do Fazendeiro.
+    printf("FAZENDEIRO[1]: da uma pera de graca no fim da batalha\nFAZENDEIRO[2]: da uma banana de graca no fim da batalha\nFAZENDEIRO[3]: da um caviar de graca no fim da batalha\n\n");// descricao do Fazendeiro.
 
     printf("MEDICO[1]: cura o da frente em 1 por turno\nMEDICO[2]: cura o da frente em 2 por turno\nMEDICO[3]: cura o da frente em 3 por turno\n\n");// descricao do Medico.
 
-    printf("ADVOGADO[1]: da 2 de dano a um inimigo aleatorio\nADVOGADO[2]: da 5 de dano a um inimigo aleatorio\nADVOGADO[3]: da 8 de dano a um inimigo aleatorio\n\n");// descricao do Advogado.
+    printf("ADVOGADO[1]: da 2 de dano ao primeiro inimigo\nADVOGADO[2]: da 5 de dano ao primeiro inimigo\nADVOGADO[3]: da 8 de dano ao primeiro inimigo\n\n");// descricao do Advogado.
 
     printf("POLICIAL[1]: da 2 de dano a TODOS os personagens\nPOLICIAL[2]: da 5 de dano a TODOS os personagens\nPOLICIAL[3]: da 8 de dano a TODOS os personagens\n\n");// descricao do Policial.
 
@@ -59,13 +59,13 @@ void printdesc()
 
     printf("GUARDA COSTAS[1]: da 1 de vida para o de tras a cada dano que levar\nGUARDA COSTAS[2]: da 2 de vida para o de tras a cada dano que levar\nGUARDA COSTAS[3]: da 3 de vida para o de tras a cada dano que levar\n\n");// descricao do Guarda costas.
 
-    printf("FILHO DO DONO[1]: da 5 de vida a todos os aliados\nFILHO DO DONO[2]: da 10 de vida a todos os aliados\nFILHO DO DONO[3]: da 15 de vida a todos os aliados\n\n");// descricao do Filho do dono.
+    printf("FILHO DO DONO[1]: da 5 de vida a todos os aliados e vai dormir\nFILHO DO DONO[2]: da 10 de vida a todos os aliados e vai dormir\nFILHO DO DONO[3]: da 15 de vida a todos os aliados e vai dormir\n\n");// descricao do Filho do dono.
 
     printf("BOMBEIRO[1]: acrescenta 1 de dano a todos os aliados\nBOMBEIRO[2]: acrescenta 3 de dano a todos os aliados\nBOMBEIRO[3]: acrescenta 5 de dano a todos os aliados\n\n");// descricao do Bombeiro.
 
     printf("ATENDENTE[1]: dobra o dano do aliado mais da frente\nATENDENTE[2]: dobra o dano do aliado mais da frente\nATENDENTE[3]: dobra o dano do aliado mais da frente\n\n");// descricao do Atendente.
 
-    printf("FOTOGRAFO[1]: da instakill\nFOTOGRAFO[2]: da instakill\nFOTOGRAFO[3]: da instakill\n\n");// descricao do Fotografo.
+    printf("FOTOGRAFO[1]: depende...\nFOTOGRAFO[2]: depende...\nFOTOGRAFO[3]: depende...\n\n");// descricao do Fotografo.
 
     printf("MOTORISTA[1]: invoca um carro 3/3\nMOTORISTA[2]: invoca um carro 6/6\nMOTORISTA[3]: invoca um carro 15/15\n\n");// descricao do Motorista.
 
@@ -73,7 +73,7 @@ void printdesc()
 
     printf("SALVA VIDAS[1]: cura o da frente em 1 por turno\nSALVA VIDAS[2]: cura o da frente em 2 por turno\nSALVA VIDAS[3]: cura o da frente em 3 por turno\n\n");// descricao do Salva vidas.
 
-    printf("COZINHEIRO[1]: da uma pera de graça no fim da batalha\nCOZINHEIRO[2]: da uma banana de graça no fim da batalha\nCOZINHEIRO[3]: da um caviar de graça no fim da batalha\n\n");// descricao do Cozinheiro.
+    printf("COZINHEIRO[1]: da uma pera de graca no fim da batalha\nCOZINHEIRO[2]: da uma banana de graca no fim da batalha\nCOZINHEIRO[3]: da um caviar de graca no fim da batalha\n\n");// descricao do Cozinheiro.
 
     printf("ARTISTA[1]: ganha mais 1 moedas no fim da batalha\nARTISTA[2]: ganha mais 3 moedas no fim da batalha\nARTISTA[3]: ganha mais 8 moedas no fim da batalha\n\n");// descricao do Artista.
 
