@@ -216,7 +216,7 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 			}	
 			
 		}
-		if(mao[i].id == 6){
+		if(mao[i].id == 1){
 			if(mao[i].lvl == 3){
 				bprofplayer=3;
 			}
@@ -225,6 +225,34 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 			}
 			else if(mao[i].lvl == 1){
 				bprofplayer=1;
+			}	
+			
+		}
+			
+	}
+	
+	for(i=0; i<5; i++){
+		if(cpu[i].id == 6){
+			if(cpu[i].lvl == 3){
+				bprogcpu=3;
+			}
+			else if(cpu[i].lvl == 2){
+				bprogcpu=2;
+			}
+			else if(cpu[i].lvl == 1){
+				bprogcpu=1;
+			}	
+			
+		}
+		if(mao[i].id == 6){
+			if(mao[i].lvl == 3){
+				bprogplayer=3;
+			}
+			else if(mao[i].lvl == 2){
+				bprogplayer=2;
+			}
+			else if(mao[i].lvl == 1){
+				bprogplayer=1;
 			}	
 			
 		}
@@ -523,6 +551,19 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 							mao[i].vida += 3;
 							printf("Professor adicionou 4 de dano e 3 de vida ao invocado, ");
 						}}
+				}
+				
+				if(bprogplayer != 0 && mao[i].id != 50 && mao[i].vida <= 0){
+					printf("Programador invocou um malware, ");
+					if(bprofplayer == 1){
+							printf("Professor adicionou 1 de dano ao invocado, ");
+						}
+						else if(bprofplayer == 2){
+							printf("Professor adicionou 2 de dano e 2 de vida ao invocado, ");
+						}
+						else if(bprofplayer == 3){
+							printf("Professor adicionou 4 de dano e 3 de vida ao invocado, ");
+						}
 				}
 
 			}
@@ -881,7 +922,19 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 							printf("Professor adicionou 4 de dano e 3 de vida ao invocado, ");
 						}}
 				}
-
+				
+				if(bprogcpu != 0 && cpu[i].id != 50 && cpu[i].vida <= 0){
+					printf("Programador invocou um malware, ");
+					if(bprofcpu == 1){
+							printf("Professor adicionou 1 de dano ao invocado, ");
+						}
+						else if(bprofcpu == 2){
+							printf("Professor adicionou 2 de dano e 2 de vida ao invocado, ");
+						}
+						else if(bprofcpu == 3){
+							printf("Professor adicionou 4 de dano e 3 de vida ao invocado, ");
+						}
+				}
 			}
 			
 			if(i == 1){
@@ -945,45 +998,15 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 			}
 		
 	}
-		
-		
-			
-	for(i=0; i<5; i++){
-		if(cpu[i].id == 6){
-			if(cpu[i].lvl == 1){
-				bprogcpu=1;
-			}
-			else if(cpu[i].lvl == 2){
-				bprogcpu=2;
-			}
-			else if(cpu[i].lvl == 3){
-				bprogcpu=3;
-			}	
-			
-		}
-		if(mao[i].id == 6){
-			if(mao[i].lvl == 1){
-				bprogplayer=1;
-			}
-			else if(mao[i].lvl == 2){
-				bprogplayer=2;
-			}
-			else if(mao[i].lvl == 3){
-				bprogplayer=3;
-			}	
-			
-		}
-			
-	}
 	
 	tp_animal malware;
-	strcpy(malware.nome, "Malware"); malware.id = 30;
+	strcpy(malware.nome, "Malware"); malware.id = 50;
 	
 	
 	
 	for(i=0; i<5; i++){
 		if(mao[i].vida <= 0 && mao[i].id != 0){
-			if(bprogplayer!=0 && mao[i].id != 30){
+			if(bprogplayer!=0 && mao[i].id != 50){
 				if(bprogplayer==1){
 					malware.vida=1;
 					malware.dano=1;
@@ -1020,7 +1043,7 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 		
 		
 		if(cpu[i].vida <= 0 && cpu[i].id != 0){
-			if(bprogcpu!=0 && cpu[i].id != 30){
+			if(bprogcpu!=0 && cpu[i].id != 50){
 				if(bprogcpu==1){
 					malware.vida=1;
 					malware.dano=1;
