@@ -22,7 +22,7 @@ int lvl;
 int exp;
 }tp_animal;
 
-//funÃ§Ã£o para atribuir o item ao animal
+//funcao para atribuir o item ao animal
 void da_item(tp_animal *b, tp_item item){
 int i;
 for(i=0; i<3; i++){
