@@ -95,10 +95,9 @@ void printconfig(){
 
 void temas(){
 	int n;
-	do{
 	printf("\n\n0: Default, 1: White Mode, 2: EVA01, 3: Sakura, 4: Selva, 5:Purple Guy, 6: Mijo, 7: Vitoria, 8: Rio, 9: Brasil \n");
 	printf("Digite o tema: ");
-	scanf("%d",&n);}while(n<=0 && n>9);
+	scanf("%d",&n);
 	
 	switch(n){
 		case 0:
@@ -174,11 +173,9 @@ int telaInicio(int config[]){
         {
         	int esc_conf;
         	while(0<1){
-        	do{
-	        	printconfig();
-	        	printf("Digite sua escolha: ");
-	        	scanf("%d", &esc_conf);
-			}while(esc_conf < 0 && esc_conf > 5);
+        	printconfig();
+        	printf("Digite sua escolha: ");
+        	scanf("%d", &esc_conf);
 			if(esc_conf==1){
 				temas();
 			}
@@ -188,11 +185,9 @@ int telaInicio(int config[]){
 				scanf("%d", &config[0]);} while(config[0] < 0);
 				}
 			else if(esc_conf==3){
-				do{
 				printf("\n\n1: Facil, 2: Medio, 3: Dificil\n");
 				printf("Digite a dificuldade: ");
-				scanf("%d", &config[1]);} while(config[1] < 0 && config[1] > 3);
-				
+				scanf("%d", &config[1]);
 			}
 			else if(esc_conf==4){
 				restaura_config(config);
