@@ -1088,7 +1088,7 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 	
 }
 
-void batalha(tp_compra mao[], tp_nome_equipe nomeplayer, tp_nome_equipe nomecpu, int *vidaplayer, int *vidacpu){
+void batalha(tp_compra mao[], tp_nome_equipe nomeplayer, tp_nome_equipe nomecpu, int *vidaplayer, int *vidacpu, int config[]){
 	tp_animal oponente[5], maoaux[5], frentejogador, frenteoponente;
 	tp_fila filajogador, filacpu;
 	int i, turno=1;
@@ -1133,7 +1133,7 @@ void batalha(tp_compra mao[], tp_nome_equipe nomeplayer, tp_nome_equipe nomecpu,
 		frenteoponente.vida -= frentejogador.dano;
 		frentejogador.vida -= frenteoponente.dano;
 		turno++;
-		sleep(5);
+		sleep(config[0]);
 	}
 	
 	printf("\n\n\n\n\n\n\n\n\n");
@@ -1149,7 +1149,7 @@ void batalha(tp_compra mao[], tp_nome_equipe nomeplayer, tp_nome_equipe nomecpu,
 	else{
 		printf("EMPATE!!!");
 	}
-	sleep(5);
+	sleep(config[0]);
 
 }
 	
