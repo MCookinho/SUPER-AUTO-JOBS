@@ -95,7 +95,7 @@ void printconfig(){
 
 void temas(){
 	int n;
-	printf("\n\n0: Default, 1: White Mode, 2: EVA01, 3: Sakura, 4: Selva, 5:Purple Guy, 6: Mijo, 7: Vitoria, 8: Rio, 9: Brasil \n");
+	printf("\n\n0: Default, 1: White Mode, 2: EVA01, 3: Sakura, 4: Selva, 5: Afton, 6: Mijo, 7: Vitoria, 8: Rio, 9: Brasil \n");
 	printf("Digite o tema: ");
 	scanf("%d",&n);
 	
