@@ -1,6 +1,7 @@
 #ifndef ANIMAIN
 #define ANIMAIN
 #include <stdio.h>
+#include <stdlib.h>
 
 //Estrutura dos itens
 typedef struct{
@@ -83,11 +84,64 @@ void printdesc()
 }
 
 void printcred(){
-    printf("================================CREDITOS================================\n");
+    printf("\n\n================================CREDITOS================================\n");
     printf("                            ~Joao Pedro Borges~\n                            ~Joao Pedro Goes~\n                            ~Rafael Guerra~\n                            ~Joao Pedro Guimaraes~\n");
 }
 
-int telaInicio(){
+void printconfig(){
+	printf("\n\n================================CONFIG================================\n");
+    printf("1: Temas\n2: Espera da batalha\n3: Dificuldade\n4: Restaurar configs\n5: Voltar");	
+}
+
+void temas(){
+	int n;
+	do{
+	printf("\n\n0: Default, 1: White Mode, 2: EVA01, 3: Sakura, 4: Selva, 5:Purple Guy, 6: Mijo, 7: Vitoria, 8: Rio, 9: Brasil \n");
+	printf("Digite o tema: ");
+	scanf("%d",&n);}while(n<=0 && n>9);
+	
+	switch(n){
+		case 0:
+			system("color 0F");
+			break;
+		case 1:
+			system("color 70");
+			break;
+		case 2:
+			system("color 5A");
+			break;
+		case 3:
+			system("color DF");
+			break;
+		case 4:
+			system("color 21");
+			break;
+		case 5:
+			system("color 56");
+			break;
+		case 6:
+			system("color 68");
+			break;
+		case 7:
+			system("color 40");
+			break;
+		case 8:
+			system("color 9F");
+			break;
+		case 9:
+			system("color 62");
+			break;
+		
+	}
+}
+
+void restaura_config(int config[]){
+	config[0]=5;
+	config[1]=2;
+	system("color 0F");
+}
+
+int telaInicio(int config[]){
     int i=0, n;
     printf("\n\n             |============================================|\n");
     printf("             |======> BEM VINDO AO SUPER AUTO-JOBS <======|\n");
@@ -100,6 +154,7 @@ int telaInicio(){
         printf("Digite 2 para Sair.\n");
         printf("Digite 3 para checar a Biblioteca.\n");
         printf("Digite 4 para ver os creditos\n");
+        printf("Digite 5 para configuracoes\n");
         scanf("%d", &n);
         if(n==1){
             i=1;
@@ -114,8 +169,37 @@ int telaInicio(){
         {
             printcred();
         }
-        
-    }
+        if (n==5)
+        {
+        	int esc_conf;
+        	while(0<1){
+        	do{
+	        	printconfig();
+	        	scanf("%d", &esc_conf);
+			}while(esc_conf < 0 && esc_conf > 5);
+			if(esc_conf==1){
+				temas();
+			}
+			else if(esc_conf==2){
+				do{
+				printf("Digite os segundos de delay por turno: ");
+				scanf("%d", &config[0]);} while(config[0] < 0);
+				}
+			else if(esc_conf==3){
+				do{
+				printf("\n\n1: Facil, 2: Medio, 3: Dificil\n");
+				printf("Digite a dificuldade: ");
+				scanf("%d", &config[1]);} while(config[1] < 0 && config[1] > 3);
+				
+			}
+			else if(esc_conf==4){
+				restaura_config(config);
+			}
+			else if(esc_conf==5)
+        		break;
+		}
+    }}
+	
     return 1;
 }
 
