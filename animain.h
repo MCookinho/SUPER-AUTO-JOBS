@@ -90,7 +90,7 @@ void printcred(){
 
 void printconfig(){
 	printf("\n\n================================CONFIG================================\n");
-    printf("1: Temas\n2: Espera da batalha\n3: Dificuldade\n4: Restaurar configs\n5: Voltar");	
+    printf("1: Temas\n2: Espera da batalha\n3: Dificuldade\n4: Restaurar configs\n5: Voltar\n");	
 }
 
 void temas(){
@@ -155,6 +155,7 @@ int telaInicio(int config[]){
         printf("Digite 3 para checar a Biblioteca.\n");
         printf("Digite 4 para ver os creditos\n");
         printf("Digite 5 para configuracoes\n");
+        printf("Digite sua escolha: ");
         scanf("%d", &n);
         if(n==1){
             i=1;
@@ -175,6 +176,7 @@ int telaInicio(int config[]){
         	while(0<1){
         	do{
 	        	printconfig();
+	        	printf("Digite sua escolha: ");
 	        	scanf("%d", &esc_conf);
 			}while(esc_conf < 0 && esc_conf > 5);
 			if(esc_conf==1){
@@ -197,8 +199,8 @@ int telaInicio(int config[]){
 			}
 			else if(esc_conf==5)
         		break;
+		}}
 		}
-    }}
 	
     return 1;
 }
