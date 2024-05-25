@@ -500,20 +500,21 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 					}
 			}
 				if(mao[i].id == 20 ){
-					tp_loja *rngbio;
+					tp_loja *rngbio, *vaziobio;
 					rngbio = inicializa_loja();
+					vaziobio = inicializa_loja();
 					if(mao[i].lvl == 1){
-						faz_loja(&rngbio);
+						faz_loja(&rngbio, &vaziobio);
 						mao[i] = rngbio->compra.carta[0];
 						printf("Biologo invocou um aliado, ");
 					}
 					else if(mao[i].lvl == 2){
-						faz_loja(&rngbio);
+						faz_loja(&rngbio, &vaziobio);
 						mao[i] = rngbio->compra.carta[1];
 						printf("Biologo invocou um aliado, ");
 					}
 					else if(mao[i].lvl == 3){
-						faz_loja(&rngbio);
+						faz_loja(&rngbio, &vaziobio);
 						mao[i] = rngbio->compra.carta[2];
 						printf("Biologo invocou um aliado, ");
 					}	
@@ -870,20 +871,21 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 					}
 			}
 				if(cpu[i].id == 20 ){
-					tp_loja *rngbio;
+					tp_loja *rngbio, *vaziobio;
 					rngbio = inicializa_loja();
+					vaziobio = inicializa_loja();
 					if(cpu[i].lvl == 1){
-						faz_loja(&rngbio);
+						faz_loja(&rngbio, &vaziobio);
 						cpu[i] = rngbio->compra.carta[0];
 						printf("Biologo invocou um aliado, ");
 					}
 					else if(cpu[i].lvl == 2){
-						faz_loja(&rngbio);
+						faz_loja(&rngbio, &vaziobio);
 						cpu[i] = rngbio->compra.carta[1];
 						printf("Biologo invocou um aliado, ");
 					}
 					else if(cpu[i].lvl == 3){
-						faz_loja(&rngbio);
+						faz_loja(&rngbio, &vaziobio);
 						cpu[i] = rngbio->compra.carta[2];
 						printf("Biologo invocou um aliado, ");
 					}	
