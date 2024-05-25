@@ -100,12 +100,12 @@ void escolhe_loja(tp_compra mao[], int vidajogador){
 			boolid = busca_loja_id(loja, subloja);
 			if(submao < 6 && submao > 0 && mao[submao-1].carta[0].id == 0){
 				troca_loja(&loja, subloja, &mao[submao-1]);
-				//dinheiro-=3;
+				dinheiro-=3;
 			}
 			else if(submao < 6 && submao > 0 && mao[submao-1].carta[0].id == boolid && mao[submao-1].carta[0].lvl != 3){
 				mao[submao-1].carta[0].exp += 1;
 				remove_loja(&loja, subloja);
-			//	dinheiro-=3;
+				dinheiro-=3;
 			}
 		}
 	}
@@ -136,7 +136,7 @@ void escolhe_loja(tp_compra mao[], int vidajogador){
 	
 	if(esc == 3 && dinheiro >=1){
 		faz_loja(&loja, &itens);
-	//	dinheiro -= 1;
+		dinheiro -= 1;
 	}
 	
 	if(esc == 4){
