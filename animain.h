@@ -3,16 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Estrutura dos itens
-typedef struct{
-char nome[15];
-int soma_vida;
-int soma_dano;
-char descricao[100];
-int id;
-}tp_item;
-
-//Estrutura dos animais
+//Estrutura dos personagens
 typedef struct{
 char nome[15];
 int vida;
@@ -22,17 +13,6 @@ int id;
 int lvl;
 int exp;
 }tp_animal;
-
-//funcao para atribuir o item ao animal
-void da_item(tp_animal *b, tp_item item){
-int i;
-for(i=0; i<3; i++){
-
-b->vida += item.soma_vida;
-b->dano += item.soma_dano;
-b++;
-}
-}
 
 void printdesc()
 {
@@ -81,20 +61,8 @@ void printdesc()
     printf("BIOLOGO[1]: ao morrer invoca um personagem aleatorio nivel 1\nBIOLOGO[2]: ao morrer invoca um personagem aleatorio nivel 2\nBIOLOGO[3]: ao morrer invoca um personagem aleatorio nivel 3\n\n");// descricao do Biologo.
 
     printf("MENDIGO[1]: ganha mais 5 moedas ao vender\nMENDIGO[2]: ganha mais 10 moedas ao vender\nMENDIGO[3]: ganha mais 20 moedas ao vender\n\n");// descricao do Mendigo.
-}
-
-void printcred(){
-    printf("\n\n================================CREDITOS================================\n");
-    printf("                            ~Joao Pedro Borges~\n                            ~Joao Pedro Goes~\n                            ~Rafael Guerra~\n                            ~Joao Pedro Guimaraes~\n");
-}
-
-void printconfig(){
-	printf("\n\n================================CONFIG================================\n");
-    printf("1: Temas\n2: Espera da batalha\n3: Dificuldade\n4: Restaurar configs\n5: Voltar\n");	
-}
-
-void printItens(){
-	printf("__________________________________________________________________________________________________________\n");
+    
+    printf("__________________________________________________________________________________________________________\n"); // descricao dos itens
 
 	printf("| ITEM 1: SALARIO                                                                                         |\n| [specs]: 1+ de vida e 1+ de ataque                                                                      |\n| [desc]:nada melhor do que um graninha como incentivo                                                    |\n|                                                                                                         |\n");
 
@@ -108,6 +76,17 @@ void printItens(){
 	
 	printf("_________________________________________________________________________________________________________|\n\n");
 }
+
+void printcred(){
+    printf("\n\n================================CREDITOS================================\n");
+    printf("                            ~Joao Pedro Borges~\n                            ~Joao Pedro Goes~\n                            ~Rafael Guerra~\n                            ~Joao Pedro Guimaraes~\n");
+}
+
+void printconfig(){
+	printf("\n\n================================CONFIG================================\n");
+    printf("1: Temas\n2: Espera da batalha\n3: Dificuldade\n4: Restaurar configs\n5: Voltar\n");	
+}
+
 void temas(){
 	int n;
 	printf("\n\n0: Default, 1: White Mode, 2: EVA01, 3: Sakura, 4: Selva, 5: Afton, 6: Mijo, 7: Vitoria, 8: Rio, 9: Brasil \n");
@@ -168,8 +147,7 @@ int telaInicio(int config[]){
         printf("Digite 2 para Sair.\n");
         printf("Digite 3 para checar a Biblioteca.\n");
         printf("Digite 4 para ver os creditos\n");
-        printf("Digite 5 para ver os itens disponiveis\n");
-        printf("Digite 6 para configuracoes\n");
+        printf("Digite 5 para configuracoes\n");
         printf("Digite sua escolha: ");
         scanf("%d", &n);
         if(n==1){
@@ -185,11 +163,7 @@ int telaInicio(int config[]){
         {
             printcred();
         }
-		if (n == 5)
-		{
-			printItens();
-		}
-        if (n==6)
+        if (n==5)
         {
         	int esc_conf;
         	while(0<1){
@@ -214,9 +188,7 @@ int telaInicio(int config[]){
 			}
 			else if(esc_conf==5)
         		break;
-		}
-		
-		}
+		}}
 		}
 	
     return 1;
