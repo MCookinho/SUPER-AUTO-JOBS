@@ -38,11 +38,21 @@ int insere_loja(tp_loja **l, tp_animal e[]){ // no codigo: insere...(lista, 10..
     novo_no = aloca_loja(); // aqui esta pegando o novo no e apontando para o NULL
     if(novo_no == NULL)
         return 0; // nao aloca memoria
+        
     //atribuir os valores para o novo no:
-    novo_no->compra.carta[0] = e[0];
-    novo_no->compra.carta[1] = e[1];
-    novo_no->compra.carta[2] = e[2];
-    novo_no->prox = NULL;
+    if(e[0].id >= 100){//caso seja item
+    	int raux = rand()%5;
+    	novo_no->compra.carta[0] = e[raux];
+	    novo_no->compra.carta[1] = e[raux];
+	    novo_no->compra.carta[2] = e[raux];
+	    novo_no->prox = NULL;
+	}
+    else{//caso seja animal
+	    novo_no->compra.carta[0] = e[0];
+	    novo_no->compra.carta[1] = e[1];
+	    novo_no->compra.carta[2] = e[2];
+	    novo_no->prox = NULL;}
+	    
     //finaliza o encadeamento do no
     if(loja_vazia(*l)){ // se for o primeiro no, entra aqui
         *l = novo_no;
@@ -58,9 +68,15 @@ int insere_loja(tp_loja **l, tp_animal e[]){ // no codigo: insere...(lista, 10..
     return 1;
 }
 
-void imprime_loja(tp_loja *lista){
+void imprime_loja(tp_loja *animais, tp_loja *itens){
     tp_loja *atu;
-    atu = lista;
+    atu = animais;
+    while(atu != NULL){
+        printf("%s ", atu->compra.carta[0].nome);
+        atu = atu->prox;
+    }
+    printf("        ");
+    atu = itens;
     while(atu != NULL){
         printf("%s ", atu->compra.carta[0].nome);
         atu = atu->prox;
@@ -86,6 +102,40 @@ int troca_loja(tp_loja **lista, int n, tp_compra *compra){
     }
     if(ant == NULL){
     	*compra = atu->compra;
+        *lista = atu->prox;
+    }
+    else{
+    	*compra = atu->compra;
+        ant->prox = atu->prox;
+    }
+    free(atu);
+    atu = NULL;
+    return 1;
+}
+
+int da_item(tp_loja **lista, int n, tp_compra *compra){
+   	
+   	if(n<1)
+   		return 0;
+   
+    tp_loja *ant, *atu;
+    atu = *lista;
+    ant = NULL;
+    int i;
+    for(i=1;((atu != NULL) && (i < n)); i++){
+        ant = atu;
+        atu = atu->prox;
+    }
+    if(atu == NULL){
+        return 0;
+    }
+    if(ant == NULL){
+    	compra->carta[0].dano += atu->compra.carta[0].dano;
+    	compra->carta[0].vida += atu->compra.carta[0].dano;
+    	compra->carta[1].dano += atu->compra.carta[0].dano;
+    	compra->carta[1].vida += atu->compra.carta[0].dano;
+    	compra->carta[2].dano += atu->compra.carta[0].dano;
+    	compra->carta[2].vida += atu->compra.carta[0].dano;
         *lista = atu->prox;
     }
     else{
@@ -149,9 +199,17 @@ void destroi_loja(tp_loja **l){
     *l = NULL;
 }
 
-void faz_esc2_loja(tp_loja *lista){
+void faz_esc6_loja(tp_loja *animais, tp_loja *itens){
 	tp_loja *atu;
-    atu = lista;
+    atu = animais;
+    printf("FUNCIONARIOS:\n\n\n");
+    while(atu != NULL){
+		puts(atu->compra.carta[0].descricao);
+		printf("DANO: %d , VIDA %d \n\n", atu->compra.carta[0].dano, atu->compra.carta[0].vida);
+        atu = atu->prox;
+		}
+	atu = itens;
+    printf("\n\n\nITENS:\n\n");
     while(atu != NULL){
 		puts(atu->compra.carta[0].descricao);
 		printf("DANO: %d , VIDA %d \n\n", atu->compra.carta[0].dano, atu->compra.carta[0].vida);
@@ -182,8 +240,9 @@ int busca_loja_id(tp_loja *lista, int n){
 }
 
 
-void faz_loja(tp_loja **l){
+void faz_loja(tp_loja **l, tp_loja **itens){
 	destroi_loja(l);
+	destroi_loja(itens);
 	//Definição de cada personagem
 	tp_animal professor[3] = {
     {"Professor", 2, 2, "PROFESSOR: adiciona 1 de dano aos invocados", 1, 1, 0},
@@ -300,8 +359,20 @@ void faz_loja(tp_loja **l){
     {"Mendigo2", 6, 7, "MENDIGO: ganha mais 10 moedas ao vender", 21, 2, 0},
     {"Mendigo3", 10, 10, "MENDIGO: ganha mais 20 moedas ao vender", 21, 3, 0}
 };
-	
-	
+
+
+
+	tp_animal auxitens[5] = {
+    {"Salario", 1, 1, "SALARIO: Nada melhor do que um graninha como incentivo", 100, 0, 0},
+    {"Demissao", 0, 0, "DEMISSAO: Demita um funcionario seu como sacrificio para aumentar 1 de dano aos demais", 101, 0, 0},
+    {"Cafe", 0, 2, "CAFE: Deixa seu trabalhador ligadasso e virado no 220V pronto pra qualquer desafio que vier", 102, 0, 0},
+    {"Soneca", 2, 0, "SONECA: Descansar ne... q o homi n eh de ferro", 103, 0, 0},
+    {"Aumento", 1, 1, "AUMENTO: De aquele aumento para o seus tabalhadores e veja o rendimento de todos melhorarem", 104, 0, 0}
+};
+
+
+
+
 	int i, aux;
 	srand(time(NULL));
 	for(i=0;i<3; i++){
@@ -382,6 +453,10 @@ void faz_loja(tp_loja **l){
 	}
 	}while(aux < 0 || aux > 22);	
 	}
+	//inserir itens
+	aux = rand() % 5;
+	insere_loja(itens, auxitens);
 }
+
 
 #endif
