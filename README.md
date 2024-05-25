@@ -1,4 +1,4 @@
-# What is that?
+# What is this?
 
 - A small project made for a college assignment.
 - Its a remake of SUPER AUTO PETS, maded in C lang
