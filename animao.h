@@ -12,10 +12,11 @@ void escolhe_loja(tp_compra mao[], int vidajogador){
 	
 	int esc=0, subloja, submao, i, j, boolid;
 	int dinheiro = 10;
-	tp_loja *loja;
+	tp_loja *loja, *itens;
 	tp_animal troca;
 	loja = inicializa_loja();
-	faz_loja(&loja);
+	itens = inicializa_loja();
+	faz_loja(&loja, &itens);
 	
 	for(i=0;i<5;i++){
 		if(mao[i].carta[0].id == 19){
@@ -38,7 +39,7 @@ void escolhe_loja(tp_compra mao[], int vidajogador){
 		
 	}
 	
-	while(esc != 6){
+	while(esc != 7){
 		
 	//define o nivel caso bata o exp
 	for(i=0;i<5;i++){
@@ -62,11 +63,11 @@ void escolhe_loja(tp_compra mao[], int vidajogador){
 	}
 	
 
-	if(esc == 2){
-			printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nLOJA:\n\n");
-			faz_esc2_loja(loja);
+	if(esc == 6){
+			printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n============LOJA============\n\n\n");
+			faz_esc6_loja(loja, itens);
 			
-			printf("\n\n\n\nDECK:\n\n");
+			printf("\n\n\n\n============DECK============\n\n\n");
 			for(i=0;i<5;i++){
 			if(mao[i].carta[0].id != 0 && mao[i].carta[0].lvl == 1){
 				puts(mao[i].carta[0].descricao);
@@ -86,9 +87,9 @@ void escolhe_loja(tp_compra mao[], int vidajogador){
 				
 	printf("Dinheiro: %d                                                 Vida: %d\n\n", dinheiro, vidajogador);
 	printf("              %s   %s   %s   %s   %s \n\n", mao[4].carta[0].nome, mao[3].carta[0].nome, mao[2].carta[0].nome, mao[1].carta[0].nome, mao[0].carta[0].nome);
-	imprime_loja(loja);
+	imprime_loja(loja, itens);
 	
-	printf("1 para contratar, 2 para ler a descricao, 3 rerolar, 4 para vender, 5 para reposicionar, 6 para batalhar: ");
+	printf("1 para contratar, 2 para comprar item, 3 rerolar, 4 para vender, 5 para reposicionar, 6 para ler a descricao, 7 para batalhar: ");
 	scanf("%d", &esc);
 	if(esc == 1 && dinheiro >= 3){
 		printf("digite qual voce quer contratar: ");
@@ -99,18 +100,42 @@ void escolhe_loja(tp_compra mao[], int vidajogador){
 			boolid = busca_loja_id(loja, subloja);
 			if(submao < 6 && submao > 0 && mao[submao-1].carta[0].id == 0){
 				troca_loja(&loja, subloja, &mao[submao-1]);
-				dinheiro-=3;
+				//dinheiro-=3;
 			}
 			else if(submao < 6 && submao > 0 && mao[submao-1].carta[0].id == boolid && mao[submao-1].carta[0].lvl != 3){
 				mao[submao-1].carta[0].exp += 1;
 				remove_loja(&loja, subloja);
+			//	dinheiro-=3;
+			}
+		}
+	}
+	
+	if(esc == 2 && dinheiro >= 3){
+		printf("digite qual item voce quer comprar: ");
+		scanf("%d", &subloja);
+		if(subloja <= (tamanho_loja(itens)) && subloja > 0){
+			printf("a posicao que voce quer colocar: ");
+			scanf("%d", &submao);
+			boolid = busca_loja_id(itens, subloja);
+			if(submao < 6 && submao > 0 && mao[submao-1].carta[0].id != 0 && boolid == 101){
+				mao[submao-1].carta[0].id = 0;
+				for(i=0; i<6; i++){
+					mao[i].carta[0].dano += 1;
+					mao[i].carta[1].dano += 1;
+					mao[i].carta[2].dano += 1;
+				}
+				da_item(&itens, subloja, &mao[submao-1]);
+				dinheiro-=3;
+			}
+			else if(submao < 6 && submao > 0 && mao[submao-1].carta[0].id != 0){
+				da_item(&itens, subloja, &mao[submao-1]);
 				dinheiro-=3;
 			}
 		}
 	}
 	
 	if(esc == 3 && dinheiro >=1){
-		faz_loja(&loja);
+		faz_loja(&loja, &itens);
 	//	dinheiro -= 1;
 	}
 	
