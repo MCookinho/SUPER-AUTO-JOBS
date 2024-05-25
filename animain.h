@@ -93,6 +93,21 @@ void printconfig(){
     printf("1: Temas\n2: Espera da batalha\n3: Dificuldade\n4: Restaurar configs\n5: Voltar\n");	
 }
 
+void printItens(){
+	printf("__________________________________________________________________________________________________________\n");
+
+	printf("| ITEM 1: SALARIO                                                                                         |\n| [specs]: 1+ de vida e 1+ de ataque                                                                      |\n| [desc]:nada melhor do que um graninha como incentivo                                                    |\n|                                                                                                         |\n");
+
+	printf("| ITEM 2: demissao                                                                                        |\n| [specs]: -1 trabalhador e 1+ de vida para todos os trabalhadores restantes                              |\n| [desc]: demita um funcionario seu como sacrificio para melhorar o resto da sua empresa                  |\n|                                                                                                         |\n");
+
+	printf("| ITEM 3:cafe                                                                                             |\n| [specs]:+2 de ataque                                                                                    |\n| [desc]: deixa seu trabalhador ligadasso e virado no 220V pronto pra qualquer desafio que vier           |\n|                                                                                                         |\n");
+	
+	printf("| ITEM 4:soneca                                                                                           |\n| [specs]:+2 de vida                                                                                      |\n| [desc]: descansar ne... q o homi n e de ferro                                                           |\n|                                                                                                         |\n");
+
+	printf("| ITEM 5:aumento                                                                                          |\n| [specs]:+1 de ataque e +1 de vida para toda a sua equipe                                                |\n| [desc]: de aquele aumento para o seus tabalhadores e veja o rendimento de todos melhorarem              |\n|");
+	
+	printf("_________________________________________________________________________________________________________|\n\n");
+}
 void temas(){
 	int n;
 	printf("\n\n0: Default, 1: White Mode, 2: EVA01, 3: Sakura, 4: Selva, 5: Afton, 6: Mijo, 7: Vitoria, 8: Rio, 9: Brasil \n");
@@ -153,7 +168,8 @@ int telaInicio(int config[]){
         printf("Digite 2 para Sair.\n");
         printf("Digite 3 para checar a Biblioteca.\n");
         printf("Digite 4 para ver os creditos\n");
-        printf("Digite 5 para configuracoes\n");
+        printf("Digite 5 para ver os itens disponiveis\n");
+        printf("Digite 6 para configuracoes\n");
         printf("Digite sua escolha: ");
         scanf("%d", &n);
         if(n==1){
@@ -169,7 +185,11 @@ int telaInicio(int config[]){
         {
             printcred();
         }
-        if (n==5)
+		if (n == 5)
+		{
+			printItens();
+		}
+        if (n==6)
         {
         	int esc_conf;
         	while(0<1){
@@ -194,7 +214,9 @@ int telaInicio(int config[]){
 			}
 			else if(esc_conf==5)
         		break;
-		}}
+		}
+		
+		}
 		}
 	
     return 1;
