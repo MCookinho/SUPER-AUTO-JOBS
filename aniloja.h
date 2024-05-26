@@ -32,7 +32,7 @@ tp_loja * aloca_loja(){ // ela ira alocar um espaco na memoria
     return novo_no;
 }
 
-int insere_loja(tp_loja **l, tp_animal e[]){ // no codigo: insere...(lista, 10...)
+int insere_loja(tp_loja **l, tp_animal e[], int raux){ // no codigo: insere...(lista, 10...)
     tp_loja *novo_no, *atu;
     tp_compra compra;
     novo_no = aloca_loja(); // aqui esta pegando o novo no e apontando para o NULL
@@ -41,7 +41,6 @@ int insere_loja(tp_loja **l, tp_animal e[]){ // no codigo: insere...(lista, 10..
         
     //atribuir os valores para o novo no:
     if(e[0].id >= 100){//caso seja item
-    	int raux = rand()%5;
     	novo_no->compra.carta[0] = e[raux];
 	    novo_no->compra.carta[1] = e[raux];
 	    novo_no->compra.carta[2] = e[raux];
@@ -139,7 +138,12 @@ int da_item(tp_loja **lista, int n, tp_compra *compra){
         *lista = atu->prox;
     }
     else{
-    	*compra = atu->compra;
+    	compra->carta[0].dano += atu->compra.carta[0].dano;
+    	compra->carta[0].vida += atu->compra.carta[0].dano;
+    	compra->carta[1].dano += atu->compra.carta[0].dano;
+    	compra->carta[1].vida += atu->compra.carta[0].dano;
+    	compra->carta[2].dano += atu->compra.carta[0].dano;
+    	compra->carta[2].vida += atu->compra.carta[0].dano;
         ant->prox = atu->prox;
     }
     free(atu);
@@ -275,9 +279,9 @@ void faz_loja(tp_loja **l, tp_loja **itens){
     {"Programador3", 8, 8, "PROGRAMADOR: invoca um malware 5/5 em um aliado que morreu", 6, 3, 0}
 };
     tp_animal fazendeiro[3] = {
-    {"Fazendeiro", 3, 4, "FAZENDEIRO: da um cafe de graca no fim da batalha", 7, 1, 0},
-    {"Fazendeiro2", 5, 5, "FAZENDEIRO: da dois cafes de graca no fim da batalha", 7, 2, 0},
-    {"Fazendeiro3", 8, 8, "FAZENDEIRO: da tres cafes de graça no fim da batalha", 7, 3, 0}
+    {"Fazendeiro", 3, 4, "FAZENDEIRO: da uma pera de graca no fim da batalha", 7, 1, 0},
+    {"Fazendeiro2", 5, 5, "FAZENDEIRO: da uma banana de graca no fim da batalha", 7, 2, 0},
+    {"Fazendeiro3", 8, 8, "FAZENDEIRO: da um caviar de graca no fim da batalha", 7, 3, 0}
 };
     tp_animal medico[3] = {
     {"Medico", 3, 4, "MEDICO: cura o da frente em 1 por turno", 8, 1, 0},
@@ -380,73 +384,73 @@ void faz_loja(tp_loja **l, tp_loja **itens){
 		aux = rand() % (22 + 1 - 0) + 0;
 		switch(aux){
 			case 0:
-				insere_loja(l, professor);
+				insere_loja(l, professor, 1);
 				break;
 			case 1:
-				insere_loja(l, jornalista);
+				insere_loja(l, jornalista, 1);
 				break;
 			case 2:
-				insere_loja(l, ator);
+				insere_loja(l, ator, 1);
 				break;
 			case 3:
-				insere_loja(l, arquiteto);
+				insere_loja(l, arquiteto, 1);
 				break;
 			case 4:
-				insere_loja(l, motorista);
+				insere_loja(l, motorista, 1);
 				break;
 			case 5:
-				insere_loja(l, programador);
+				insere_loja(l, programador, 1);
 				break;
 			case 6:
-				insere_loja(l, fazendeiro);
+				insere_loja(l, fazendeiro, 1);
 				break;
 			case 7:
-				insere_loja(l, medico);
+				insere_loja(l, medico, 1);
 				break;
 			case 8:
-				insere_loja(l, advogado);
+				insere_loja(l, advogado, 1);
 				break;
 			case 9:
-				insere_loja(l, policial);
+				insere_loja(l, policial, 1);
 				break;
 			case 10:
-				insere_loja(l, vendedor);
+				insere_loja(l, vendedor, 1);
 				break;
 			case 11:
-				insere_loja(l, guardacostas);
+				insere_loja(l, guardacostas, 1);
 				break;
 			case 12:
-				insere_loja(l, filhododono);
+				insere_loja(l, filhododono, 1);
 				break;
 			case 13:
-				insere_loja(l, bombeiro);
+				insere_loja(l, bombeiro, 1);
 				break;
 			case 14:
-				insere_loja(l, atendente);
+				insere_loja(l, atendente, 1);
 				break;
 			case 15:
-				insere_loja(l, fotografo);
+				insere_loja(l, fotografo, 1);
 				break;
 			case 16:
-				insere_loja(l, mecanico);
+				insere_loja(l, mecanico, 1);
 				break;
 			case 17:
-				insere_loja(l, cantor);
+				insere_loja(l, cantor, 1);
 				break;
 			case 18:
-				insere_loja(l, salvavidas);
+				insere_loja(l, salvavidas, 1);
 				break;
 			case 19:
-				insere_loja(l, cozinheiro);
+				insere_loja(l, cozinheiro, 1);
 				break;
 			case 20:
-				insere_loja(l, biologo);
+				insere_loja(l, biologo, 1);
 				break;
 			case 21:
-				insere_loja(l, mendigo);
+				insere_loja(l, mendigo, 1);
 				break;
 			case 22:
-				insere_loja(l, artista);
+				insere_loja(l, artista, 1);
 				break;
 			default:
 				break;
@@ -454,8 +458,8 @@ void faz_loja(tp_loja **l, tp_loja **itens){
 	}while(aux < 0 || aux > 22);	
 	}
 	//inserir itens
-	aux = rand() % 5;
-	insere_loja(itens, auxitens);
+	aux = rand()%5;
+	insere_loja(itens, auxitens, aux);
 }
 
 
