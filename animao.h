@@ -19,7 +19,7 @@ void escolhe_loja(tp_compra mao[], int vidajogador){
 	faz_loja(&loja, &itens);
 	
 	for(i=0;i<5;i++){
-		if(mao[i].carta[0].id == 19){
+		if(mao[i].carta[0].id == 19){//habilidade do artista
 			if(mao[i].carta[0].lvl == 1)
 				dinheiro += 1;
 			else if(mao[i].carta[0].lvl == 2)
@@ -28,13 +28,27 @@ void escolhe_loja(tp_compra mao[], int vidajogador){
 				dinheiro += 8;
 			}
 		
-		if(mao[i].carta[0].id == 23){
+		if(mao[i].carta[0].id == 23){//habilidade do vendedor
 			if(mao[i].carta[0].lvl == 1)
 				dinheiro += 2;
 			else if(mao[i].carta[0].lvl == 2)
 				dinheiro += 4;
 			else if(mao[i].carta[0].lvl == 3)
 				dinheiro += 6;
+		}
+		
+		if (mao[i].carta[0].id == 7 || mao[i].carta[0].id == 18){//habilidades do cozinheiro e fazendeiro
+			tp_animal itens_cozinheiro[3] = {
+		    {"Pera", 1, 1, "PERA: Gerada por um de seus funcionarios", 200, 0, 0},
+		    {"Banana", 2, 2, "DEMISSAO: Gerada por um de seus funcionarios", 201, 0, 0},
+		    {"Caviar", 3, 3, "CAVIAR: Gerado por um de seus funcionarios", 202, 0, 0}
+			};
+			if(mao[i].carta[0].lvl == 1)
+				insere_loja(&itens, itens_cozinheiro, 0);
+			else if(mao[i].carta[0].lvl == 2)
+				insere_loja(&itens, itens_cozinheiro, 1);
+			else if(mao[i].carta[0].lvl == 3)
+				insere_loja(&itens, itens_cozinheiro, 2);
 		}
 		
 	}
