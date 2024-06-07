@@ -141,8 +141,8 @@ void restaura_config(int config[]){
 }
 
 int telaInicio(int config[]){
-    int i=0, n;
-    while (i==0){
+    int n;
+    while (1==1){
     system("cls");
     printf("\n\n             |============================================|\n");
     printf("             |======> BEM VINDO AO SUPER AUTO JOBS <======|\n");
@@ -158,7 +158,7 @@ int telaInicio(int config[]){
         printf("Digite sua escolha: ");
         scanf("%d", &n);
         if(n==1){
-            i=1;
+            return 1;
         }
         if(n==2){
             return 0;
