@@ -162,7 +162,7 @@ void faz_filas_batalha(tp_animal mao[], tp_animal cpu[], tp_fila *filajogador, t
 
 void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp_animal *frenteoponente, int turno){
 	tp_animal zerar, duble_player, duble_cpu, mao[5], cpu[5];
-	zerar.id = 0;
+	zerar.id = 0, zerar.vida = 1;
 	int i, j, bprogcpu=0, bprofcpu=0, bprogplayer=0, bprofplayer=0;
 	for(i=0; i<5; i++){
 		mao[i] = zerar;
