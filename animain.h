@@ -2,6 +2,7 @@
 #define ANIMAIN
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include <Windows.h>
 
 //Estrutura dos personagens
@@ -80,7 +81,7 @@ void printdesc()
 
 void printcred(){
     printf("\n\n================================CREDITOS================================\n");
-    printf("                            ~Joao Pedro Borges~\n                            ~Joao Pedro Goes~\n                            ~Rafael Guerra~\n                            ~Joao Pedro Guimaraes~\n");
+    printf("                            ~Joao Pedro Borges~\n                            ~Joao Pedro Goes~\n                            ~Rafael Guerra~\n                            ~Joao Pedro Guimaraes~\n\n");
 }
 
 void printconfig(){
@@ -142,18 +143,19 @@ void restaura_config(int config[]){
 
 int telaInicio(int config[]){
     int i=0, n;
+    while (i==0){
+    system("cls");
     printf("\n\n             |============================================|\n");
-    printf("             |======> BEM VINDO AO SUPER AUTO-JOBS <======|\n");
+    printf("             |======> BEM VINDO AO SUPER AUTO JOBS <======|\n");
     printf("             |============================================|\n");
     printf("             |=========Jogar=================Sair=========|\n");
     printf("             |=================Biblioteca=================|\n");
     printf("             |============================================|\n\n");
-    while (i==0){
-        printf("Digite 1 para Jogar.\n");
-        printf("Digite 2 para Sair.\n");
-        printf("Digite 3 para checar a Biblioteca.\n");
-        printf("Digite 4 para configuracoes\n");
-        printf("Digite 5 para extras\n");
+        printf("Digite 1 para Jogar\n");
+        printf("Digite 2 para Sair\n");
+        printf("Digite 3 para Checar a Biblioteca\n");
+        printf("Digite 4 para Configuracoes\n");
+        printf("Digite 5 para Extras\n\n");
         printf("Digite sua escolha: ");
         scanf("%d", &n);
         if(n==1){
@@ -164,23 +166,25 @@ int telaInicio(int config[]){
         }
         if(n==3){
         	int esc_conf;
+        	system("cls");
             printdesc();
-            printf("Digite sua escolha: ");
+            printf("Digite 1 para voltar: ");
         	scanf("%d", &esc_conf);
         }
         if (n==4)
         {
         	int esc_conf;
         	while(0<1){
+        	system("cls");
         	printconfig();
-        	printf("Digite sua escolha: ");
+        	printf("\nDigite sua escolha: ");
         	scanf("%d", &esc_conf);
 			if(esc_conf==1){
 				temas();
 			}
 			else if(esc_conf==2){
 				do{
-				printf("Digite os segundos de delay por turno: ");
+				printf("\nDigite os segundos de delay por turno: ");
 				scanf("%d", &config[0]);} while(config[0] < 0);
 				}
 			else if(esc_conf==3){
@@ -198,17 +202,21 @@ int telaInicio(int config[]){
         {
         	int esc_conf;
         	while(0<1){
+        	system("cls");
         	printextras();
         	printf("Digite sua escolha: ");
         	scanf("%d", &esc_conf);
 			if(esc_conf==1){
+				system("cls");
 				printcred();
+				printf("Digite 1 para voltar: ");
+        		scanf("%d", &esc_conf);
 			}
 			else if(esc_conf==2){
-				system("start iexplore.exe https://teamwood.itch.io/super-auto-pets");
+				system("explorer https://teamwood.itch.io/super-auto-pets");
 				}
-			else if(esc_conf==3){
-				system("start iexplore.exe https://github.com/MCookinho/SUPER-AUTO-JOBS/");
+			else if(esc_conf==3){	
+				system("explorer https://github.com/MCookinho/SUPER-AUTO-JOBS/");
 			}
 			else if(esc_conf==4)
         		break;
@@ -216,6 +224,32 @@ int telaInicio(int config[]){
 		}
 	
     return 1;
+}
+
+void fim_de_jogo(int cond){
+	int i;
+	system("cls");
+	if(cond==1){
+		printf("\n\n===============================VOCE=GANHOU===============================\n\n");
+		sleep(3);
+		for(i=5;i>=0;i--){
+			system("cls");
+			printf("\n\n===============================VOCE=GANHOU===============================\n\n");
+			printf("O JOGO SERA ENCERRADO EM %d SEGUNDOS", i);
+			sleep(1);
+			}
+	}
+	
+	if(cond==0){
+		printf("\n\n===============================VOCE=PERDEU===============================\n\n");
+		sleep(3);
+		for(i=5;i>=0;i--){
+			system("cls");
+			printf("\n\n===============================VOCE=PERDEU===============================\n\n");
+			printf("O JOGO SERA ENCERRADO EM %d SEGUNDOS", i);
+			sleep(1);
+			}
+	}
 }
 
 #endif
