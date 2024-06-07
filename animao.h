@@ -68,7 +68,7 @@ void escolhe_loja(tp_compra mao[], int vidajogador){
 			}
 	}
 	
-	
+	system("cls");
 	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	
 	for(i=0;i<5;i++){
@@ -187,7 +187,6 @@ void escolhe_loja(tp_compra mao[], int vidajogador){
 		
 	}
 	}
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	destroi_loja(&loja);
 }
 
