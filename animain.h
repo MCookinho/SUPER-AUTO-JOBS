@@ -2,6 +2,7 @@
 #define ANIMAIN
 #include <stdio.h>
 #include <stdlib.h>
+#include <Windows.h>
 
 //Estrutura dos personagens
 typedef struct{
@@ -83,8 +84,13 @@ void printcred(){
 }
 
 void printconfig(){
-	printf("\n\n================================CONFIG================================\n");
+	printf("\n\n=================================CONFIG=================================\n");
     printf("1: Temas\n2: Espera da batalha\n3: Dificuldade\n4: Restaurar configs\n5: Voltar\n");	
+}
+
+void printextras(){
+	printf("\n\n=================================EXTRAS=================================\n");
+    printf("1: Creditos\n2: Pagina do jogo original\n3: Github do projeto\n4: Voltar\n");	
 }
 
 void temas(){
@@ -146,8 +152,8 @@ int telaInicio(int config[]){
         printf("Digite 1 para Jogar.\n");
         printf("Digite 2 para Sair.\n");
         printf("Digite 3 para checar a Biblioteca.\n");
-        printf("Digite 4 para ver os creditos\n");
-        printf("Digite 5 para configuracoes\n");
+        printf("Digite 4 para configuracoes\n");
+        printf("Digite 5 para extras\n");
         printf("Digite sua escolha: ");
         scanf("%d", &n);
         if(n==1){
@@ -157,13 +163,12 @@ int telaInicio(int config[]){
             return 0;
         }
         if(n==3){
+        	int esc_conf;
             printdesc();
+            printf("Digite sua escolha: ");
+        	scanf("%d", &esc_conf);
         }
         if (n==4)
-        {
-            printcred();
-        }
-        if (n==5)
         {
         	int esc_conf;
         	while(0<1){
@@ -187,6 +192,25 @@ int telaInicio(int config[]){
 				restaura_config(config);
 			}
 			else if(esc_conf==5)
+        		break;
+		} }
+        if (n==5)
+        {
+        	int esc_conf;
+        	while(0<1){
+        	printextras();
+        	printf("Digite sua escolha: ");
+        	scanf("%d", &esc_conf);
+			if(esc_conf==1){
+				printcred();
+			}
+			else if(esc_conf==2){
+				system("start iexplore.exe https://teamwood.itch.io/super-auto-pets");
+				}
+			else if(esc_conf==3){
+				system("start iexplore.exe https://github.com/MCookinho/SUPER-AUTO-JOBS/");
+			}
+			else if(esc_conf==4)
         		break;
 		}}
 		}
