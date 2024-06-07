@@ -15,9 +15,8 @@ int main(){
 		//definicao da fase e vida
 		int vidaplayer=5, vidacpu=5, fase=1;
 		//Menu
-		if(!telaInicio(config)){
+		if(!telaInicio(config))
 			return 0;
-		}
 		//Jogo
 		escolhe_loja(mao, vidaplayer);//primeiro turno
 		faznome(&nomeeqp, &cpunome);
