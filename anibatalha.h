@@ -3,6 +3,7 @@
 #include "animain.h"
 #include "animao.h"
 #include "randname.h"
+#include "anifases.h"
 #include <unistd.h>
 #define MAX 10
 
@@ -30,7 +31,7 @@ int filaVazia(tp_fila *f){
 
 int proximo(int pos){
 
-    if (pos == MAX -1)// checa se a posiÃƒÂ§ÃƒÂ£o ÃƒÂ© a mesma da ultima posiÃƒÂ§ÃƒÂ£o da fila.
+    if (pos == MAX -1)// checa se a posiÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o ÃƒÆ’Ã‚Â© a mesma da ultima posiÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o da fila.
     {
         return 0;
     } return ++pos;
@@ -51,7 +52,7 @@ int insereFila(tp_fila *f, tp_animal e){
 
     if (filaCheia(f))
     {
-        return 0;//NÃƒÂ£o foi possivel adiconar a fila.
+        return 0;//NÃƒÆ’Ã‚Â£o foi possivel adiconar a fila.
     }
     
     f->fim = proximo(f->fim);
@@ -63,7 +64,7 @@ int insereFila(tp_fila *f, tp_animal e){
 int removeFila(tp_fila *f, tp_animal *e){
     if (filaVazia(f))
     {
-        return 0;// NÃƒÂ£o foi possivel remover da fila.
+        return 0;// NÃƒÆ’Ã‚Â£o foi possivel remover da fila.
     }
     f->ini = proximo(f->ini);
     *e = f->item[f->ini];
@@ -1087,10 +1088,9 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 	
 	printf("\n\n\n\n");
 	faz_filas_batalha(mao, cpu, filajogador, filacpu);
-	
 }
 
-void batalha(tp_compra mao[], tp_nome_equipe nomeplayer, tp_nome_equipe nomecpu, int *vidaplayer, int *vidacpu, int config[]){
+void batalha(tp_compra mao[], tp_nome_equipe nomeplayer, tp_nome_equipe nomecpu, int *vidaplayer, int *vidacpu, int config[], int fase){
 	tp_animal oponente[5], maoaux[5], frentejogador, frenteoponente;
 	tp_fila filajogador, filacpu;
 	int i, turno=1;
@@ -1102,20 +1102,11 @@ void batalha(tp_compra mao[], tp_nome_equipe nomeplayer, tp_nome_equipe nomecpu,
 		maoaux[i] = mao[i].carta[0];	
 	}
 	
-	tp_animal bombeiro, atendente, salvavidas, vazio;
-	strcpy(bombeiro.nome, "Bombeiro"); bombeiro.vida = 5; bombeiro.dano = 2; strcpy(bombeiro.descricao, "BOMBEIRO: acrescenta 1 de dano a todos os aliados"); bombeiro.id = 12; bombeiro.lvl = 1; bombeiro.exp = 0;
-	strcpy(atendente.nome, "Atendente"); atendente.vida = 5; atendente.dano = 2; strcpy(atendente.descricao, "ATENDENTE: dobra o dano do aliado mais da frente"); atendente.id = 13; atendente.lvl = 1; atendente.exp = 0;
-	strcpy(salvavidas.nome, "SalvaVidas"); salvavidas.vida = 2; salvavidas.dano = 2; strcpy(salvavidas.descricao, "SALVA VIDAS: cura o da frente em 1 por turno"); salvavidas.id = 17; salvavidas.lvl = 1; salvavidas.exp = 0;
-	vazio.id = 0;
-	
-	oponente[0] = bombeiro;
-	oponente[1] = atendente;
-	oponente[2] = salvavidas;
-	oponente[3] = vazio;
-	oponente[4] = vazio;	
+	define_fase(oponente, fase);
 	faz_filas_batalha(maoaux, oponente, &filajogador, &filacpu);
 	
 	while((!filaVazia(&filajogador)  || frentejogador.vida >= 1) && (!filaVazia(&filacpu)  || frenteoponente.vida >= 1)){
+		system("cls");
 
 		printf("%s %s |-----------------------------------VS-----------------------------------| %s %s\n",nomeplayer.substantivo , nomeplayer.adjetivo, nomecpu.substantivo , nomecpu.adjetivo );
 		printf("TURNO %d:\n\n",turno);
