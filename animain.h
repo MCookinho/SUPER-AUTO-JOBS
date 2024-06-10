@@ -93,6 +93,11 @@ void printextras(){
     printf("1: Creditos\n2: Pagina do jogo original\n3: Github do projeto\n4: Voltar\n");	
 }
 
+void printgamemode(){
+	printf("\n\n==============================MODO=DE=JOGO===================================\n");
+   	printf("1: Singleplayer \n2: Multiplayer\n3: Voltar\n");
+}
+
 void temas(){
 	int n;
 	printf("\n\n0: Default, 1: White Mode, 2: EVA01, 3: Sakura, 4: Selva, 5: Afton, 6: Mijo, 7: Vitoria, 8: Rio, 9: Brasil \n");
@@ -158,8 +163,20 @@ int telaInicio(int config[]){
         printf("Digite sua escolha: ");
         scanf("%d", &n);
         if(n==1){
-            return 1;
-        }
+        	int esc_conf;
+        	while(0<1){
+        	system("cls");
+        	printgamemode();
+        	printf("Digite sua escolha: ");
+        	scanf("%d", &esc_conf);
+			if(esc_conf==1)
+				return 1;
+			else if(esc_conf==2)
+				return 2;
+			else if(esc_conf==3)	
+				break;;
+        	}
+		}
         if(n==2){
             return 0;
         }
@@ -249,6 +266,47 @@ void fim_de_jogo(int cond){
 			sleep(1);
 			}
 	}
+	
+	if(cond==2){
+		printf("\n\n====================================JOGADOR=1=GANHOU====================================\n\n");
+		sleep(3);
+		for(i=5;i>=0;i--){
+			system("cls");
+			printf("\n\n====================================JOGADOR=1=GANHOU====================================\n\n");
+			printf("O JOGO SERA ENCERRADO EM %d SEGUNDOS", i);
+			sleep(1);
+			}
+	}
+	
+	if(cond==3){
+		printf("\n\n====================================JOGADOR=2=GANHOU====================================\n\n");
+		sleep(3);
+		for(i=5;i>=0;i--){
+			system("cls");
+			printf("\n\n====================================JOGADOR=2=GANHOU====================================\n\n");
+			printf("O JOGO SERA ENCERRADO EM %d SEGUNDOS", i);
+			sleep(1);
+			}
+	}
 }
+
+void printa_jogador_mp(int cond){
+		int i;
+	system("cls");
+	if(cond==1){
+		printf("\n\n=======================================================================\n");
+		printf("===============================JOGADOR=1===============================\n");
+		printf("=======================================================================\n");
+		sleep(3);		
+	}
+	
+	if(cond==2){
+		printf("\n\n=======================================================================\n");
+		printf("===============================JOGADOR=2===============================\n");
+		printf("=======================================================================\n");
+		sleep(3);
+	}
+}
+
 
 #endif
