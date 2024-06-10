@@ -17,7 +17,7 @@ typedef struct tp_no{
 }tp_loja;
 
 tp_loja * inicializa_loja(){ // atribui NULL ao 1o no da Lista SE 
-// em código: lista = inicializa_listase
+// em cÃ³digo: lista = inicializa_listase
         return NULL;
 }
 
@@ -247,7 +247,7 @@ int busca_loja_id(tp_loja *lista, int n){
 void faz_loja(tp_loja **l, tp_loja **itens){
 	destroi_loja(l);
 	destroi_loja(itens);
-	//Definição de cada personagem
+	//DefiniÃ§Ã£o de cada personagem
 	tp_animal professor[3] = {
     {"Professor", 2, 2, "PROFESSOR: adiciona 1 de dano aos invocados", 1, 1, 0},
     {"Professor2", 4, 4, "PROFESSOR: adiciona 2 de dano e 2 de vida aos invocados", 1, 2, 0},
@@ -264,9 +264,9 @@ void faz_loja(tp_loja **l, tp_loja **itens){
     {"Ator3", 7, 5, "ATOR: invoca dois dubles com a mesma vida e dano do ator", 3, 3, 0}
 };
     tp_animal arquiteto[3] = {
-    {"Arquiteto", 2, 1, "ARQUITETO: da 2 de vida aos 2 aliados atrás dele", 4, 1, 0},
-    {"Arquiteto2", 4, 2, "ARQUITETO: da 4 de vida aos 2 aliados atrás dele", 4, 2, 0},
-    {"Arquiteto3", 7, 5, "ARQUITETO: da 6 de vida aos 2 aliados atrás dele", 4, 3, 0}
+    {"Arquiteto", 2, 1, "ARQUITETO: da 2 de vida aos 2 aliados atrÃ¡s dele", 4, 1, 0},
+    {"Arquiteto2", 4, 2, "ARQUITETO: da 4 de vida aos 2 aliados atrÃ¡s dele", 4, 2, 0},
+    {"Arquiteto3", 7, 5, "ARQUITETO: da 6 de vida aos 2 aliados atrÃ¡s dele", 4, 3, 0}
 };
     tp_animal motorista[3] = {
     {"Motorista", 2, 1, "MOTORISTA: invoca um carro 5/5", 5, 1, 0},
@@ -344,9 +344,9 @@ void faz_loja(tp_loja **l, tp_loja **itens){
     {"SalvaVidas3", 15, 15, "SALVA VIDAS: cura o da frente em 3 por turno", 17, 3, 0}
 };
     tp_animal cozinheiro[3] = {
-    {"Cozinheiro", 4, 3, "COZINHEIRO: da uma pera de graça no fim da batalha", 18, 1, 0},
-    {"Cozinheiro2", 5, 5, "COZINHEIRO: da uma banana de graça no fim da batalha", 18, 2, 0},
-    {"Cozinheiro3", 7, 6, "COZINHEIRO: da um caviar de graça no fim da batalha", 18, 3, 0}
+    {"Cozinheiro", 4, 3, "COZINHEIRO: da uma pera de graÃ§a no fim da batalha", 18, 1, 0},
+    {"Cozinheiro2", 5, 5, "COZINHEIRO: da uma banana de graÃ§a no fim da batalha", 18, 2, 0},
+    {"Cozinheiro3", 7, 6, "COZINHEIRO: da um caviar de graÃ§a no fim da batalha", 18, 3, 0}
 };
     tp_animal artista[3] = {
     {"Artista", 1, 1, "ARTISTA: ganha mais 1 moedas no fim da batalha", 19, 1, 0},
