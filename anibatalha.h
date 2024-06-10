@@ -1090,7 +1090,7 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 	faz_filas_batalha(mao, cpu, filajogador, filacpu);
 }
 
-void batalha(tp_compra mao[], tp_nome_equipe nomeplayer, tp_nome_equipe nomecpu, int *vidaplayer, int *vidacpu, int config[], int fase){
+void SP_batalha(tp_compra mao[], tp_nome_equipe nomeplayer, tp_nome_equipe nomecpu, int *vidaplayer, int *vidacpu, int config[], int fase){
 	tp_animal oponente[5], maoaux[5], frentejogador, frenteoponente;
 	tp_fila filajogador, filacpu;
 	int i, turno=1;
@@ -1138,6 +1138,63 @@ void batalha(tp_compra mao[], tp_nome_equipe nomeplayer, tp_nome_equipe nomecpu,
 	else if(filaVazia(&filacpu) && frenteoponente.vida <= 0 && (!filaVazia(&filajogador) || frentejogador.vida > 0)){
 		*vidacpu -= 1;
 		printf("VOCE GANHOU!!!");
+	}
+	else{
+		printf("EMPATE!!!");
+	}
+	sleep(config[0]);
+
+}
+
+
+void MP_batalha(tp_compra P1[],tp_compra P2[], tp_nome_equipe nome_P1, tp_nome_equipe nome_P2, int *vida_P1, int *vida_P2, int config[]){
+	tp_animal P1_aux[5], P2_aux[5], frente_P1, frente_P2;
+	tp_fila fila_P1, fila_P2;
+	int i, turno=1;
+	
+	frente_P1.vida=0; frente_P2.vida=0; frente_P1.id=0; frente_P2.id=0;
+	
+	
+	for(i=0; i<5; i++){
+		P1_aux[i] = P1[i].carta[0];
+		P2_aux[i] = P2[i].carta[0];	
+	}
+	
+	faz_filas_batalha(P1_aux, P2_aux, &fila_P1, &fila_P2);
+	
+	while((!filaVazia(&fila_P1)  || frente_P1.vida >= 1) && (!filaVazia(&fila_P2)  || frente_P2.vida >= 1)){
+		system("cls");
+
+		printf("%s %s |-----------------------------------VS-----------------------------------| %s %s\n",nome_P1.substantivo , nome_P1.adjetivo, nome_P2.substantivo , nome_P2.adjetivo );
+		printf("TURNO %d:\n\n",turno);
+		
+		skills(&fila_P1, &fila_P2, &frente_P1, &frente_P2, turno);
+		if(frente_P1.vida <= 0){
+			removeFila(&fila_P1, &frente_P1);
+		}
+		if(frente_P2.vida <= 0){
+			removeFila(&fila_P2, &frente_P2);
+		}
+		
+		imprimeFilaNomesPlayer(fila_P1); printf("%s                           %s ",frente_P1.nome, frente_P2.nome ); imprimeFilaNomesCpu(fila_P2); printf("\n");
+		imprimeFilaStatsPlayer(fila_P1); printf("(%d, %d)                           (%d, %d) ", frente_P1.dano, frente_P1.vida, frente_P2.dano,  frente_P2.vida); imprimeFilaStatsCpu(fila_P2); printf("\n");
+		printf("\n\n\n\n\n");
+		
+		frente_P2.vida -= frente_P1.dano;
+		frente_P1.vida -= frente_P2.dano;
+		turno++;
+		sleep(config[0]);
+	}
+	
+	printf("\n\n\n\n\n\n\n\n\n");
+	
+	if(filaVazia(&fila_P1) && frente_P1.vida <= 0 && (!filaVazia(&fila_P2) || frente_P2.vida > 0)){
+		*vida_P1 -= 1;
+		printf("%s %s GANHOU!!!",nome_P2.substantivo, nome_P2.adjetivo);
+	}
+	else if(filaVazia(&fila_P2) && frente_P2.vida <= 0 && (!filaVazia(&fila_P1) || frente_P1.vida > 0)){
+		*vida_P2 -= 1;
+		printf("%s %s GANHOU!!!",nome_P1.substantivo, nome_P1.adjetivo);
 	}
 	else{
 		printf("EMPATE!!!");
