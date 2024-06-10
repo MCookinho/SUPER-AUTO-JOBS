@@ -39,9 +39,9 @@ void escolhe_loja(tp_compra mao[], int vidajogador){
 		
 		if (mao[i].carta[0].id == 7 || mao[i].carta[0].id == 18){//habilidades do cozinheiro e fazendeiro
 			tp_animal itens_cozinheiro[3] = {
-		    {"Pera", 1, 1, "PERA: Gerada por um de seus funcionarios", 200, 0, 0},
-		    {"Banana", 2, 2, "DEMISSAO: Gerada por um de seus funcionarios", 201, 0, 0},
-		    {"Caviar", 3, 3, "CAVIAR: Gerado por um de seus funcionarios", 202, 0, 0}
+		    {"*Pera", 1, 1, "PERA: Gerada por um de seus funcionarios", 200, 0, 0},
+		    {"*Banana", 2, 2, "DEMISSAO: Gerada por um de seus funcionarios", 201, 0, 0},
+		    {"*Caviar", 3, 3, "CAVIAR: Gerado por um de seus funcionarios", 202, 0, 0}
 			};
 			if(mao[i].carta[0].lvl == 1)
 				insere_loja(&itens, itens_cozinheiro, 0);
@@ -143,7 +143,8 @@ void escolhe_loja(tp_compra mao[], int vidajogador){
 			}
 			else if(submao < 6 && submao > 0 && mao[submao-1].carta[0].id != 0){
 				da_item(&itens, subloja, &mao[submao-1]);
-				dinheiro-=3;
+				if(boolid<200)
+					dinheiro-=3;
 			}
 		}
 	}
