@@ -1,6 +1,7 @@
 #ifndef ANIFASES_H
 #define ANIFASES_H
 #include "animain.h"
+#include "randname.h"
 #include "string.h"
 
 void define_fase(tp_animal oponente[], int fase){
@@ -154,6 +155,116 @@ void define_fase(tp_animal oponente[], int fase){
 	oponente[4] = policial;
 	}
 	
+}
+
+void remover_ultimas_linhas_do_arquivo(const char *filename) {
+	#define LINES_TO_DELETE 10
+    FILE *file = fopen(filename, "r+");
+    if (file == NULL) {
+        perror("Erro deletar linhas");
+        return;
+    }
+
+    fseek(file, 0, SEEK_END); // Move para o final do arquivo
+
+    long pos = ftell(file);
+    int lines = 0;
+    int i;
+
+    // Conta as linhas a partir do final do arquivo
+    for (i = 1; i <= pos; i++) {
+        fseek(file, -i, SEEK_END);
+        if (fgetc(file) == '\n') {
+            lines++;
+            if (lines == LINES_TO_DELETE + 1) {
+                break;
+            }
+        }
+    }
+
+    if (lines < LINES_TO_DELETE) {
+        printf("O arquivo possui menos de %d linhas.\n", LINES_TO_DELETE);
+        fclose(file);
+        return;
+    }
+
+    // Trunca o arquivo até a posição atual
+    ftruncate(fileno(file), pos - i + 1);
+
+    fclose(file);
+}
+
+int grava_historico(tp_animal P1[], tp_animal P2[], int cond, tp_nome_equipe nome_P1, tp_nome_equipe nome_P2){
+ FILE *pont_arq;
+ 
+  if (cond == 0){
+	pont_arq = fopen("HistorySAJ.txt","a");
+	
+	if (pont_arq == NULL)
+	  {
+	    printf("Erro ao tentar ler o historico!");
+	    return 0;
+	  }
+	fprintf(pont_arq,"\n%s %s           vs         %s %s\n\n", nome_P1.substantivo, nome_P1.adjetivo, nome_P2.substantivo, nome_P2.adjetivo);
+	fprintf(pont_arq,"P1: %s %s %s %s %s\n", P1[0].nome, P1[1].nome, P1[2].nome, P1[3].nome, P1[4].nome);
+	fprintf(pont_arq,"P2: %s %s %s %s %s\n\n", P2[0].nome, P2[1].nome, P2[2].nome, P2[3].nome, P2[4].nome);
+	fprintf(pont_arq,"ABANDONO DE PARTIDA\n");
+	fprintf(pont_arq,"======================================================================\n");
+	
+  }
+  
+  if (cond == 1){
+  	remover_ultimas_linhas_do_arquivo("HistorySAJ.txt");
+  	pont_arq = fopen("HistorySAJ.txt","a");
+	
+	if (pont_arq == NULL)
+	  {
+	    printf("Erro ao tentar ler o historico!");
+	    return 0;
+	  }
+	fprintf(pont_arq,"\n%s %s           vs         %s %s\n\n", nome_P1.substantivo, nome_P1.adjetivo, nome_P2.substantivo, nome_P2.adjetivo);
+	fprintf(pont_arq,"P1: %s %s %s %s %s\n", P1[0].nome, P1[1].nome, P1[2].nome, P1[3].nome, P1[4].nome);
+	fprintf(pont_arq,"P2: %s %s %s %s %s\n\n", P2[0].nome, P2[1].nome, P2[2].nome, P2[3].nome, P2[4].nome);
+	fprintf(pont_arq,"ABANDONO DE PARTIDA\n");
+	fprintf(pont_arq,"======================================================================");
+	
+  }
+  
+  if (cond == 2){
+  	remover_ultimas_linhas_do_arquivo("HistorySAJ.txt");
+  	pont_arq = fopen("HistorySAJ.txt","a");
+	
+	if (pont_arq == NULL)
+	  {
+	    printf("Erro ao tentar ler o historico!");
+	    return 0;
+	  }
+	fprintf(pont_arq,"\n%s %s           vs         %s %s\n\n", nome_P1.substantivo, nome_P1.adjetivo, nome_P2.substantivo, nome_P2.adjetivo);
+	fprintf(pont_arq,"P1: %s %s %s %s %s\n", P1[0].nome, P1[1].nome, P1[2].nome, P1[3].nome, P1[4].nome);
+	fprintf(pont_arq,"P2: %s %s %s %s %s\n\n", P2[0].nome, P2[1].nome, P2[2].nome, P2[3].nome, P2[4].nome);
+	fprintf(pont_arq,"P1 GANHOU A PARTIDA\n");
+	fprintf(pont_arq,"======================================================================");
+  }
+  
+  if (cond == 3){
+  	remover_ultimas_linhas_do_arquivo("HistorySAJ.txt");
+  	pont_arq = fopen("HistorySAJ.txt","a");
+	
+	if (pont_arq == NULL)
+	  {
+	    printf("Erro ao tentar ler o historico!");
+	    return 0;
+	  }
+	fprintf(pont_arq,"\n%s %s           vs         %s %s\n\n", nome_P1.substantivo, nome_P1.adjetivo, nome_P2.substantivo, nome_P2.adjetivo);
+	fprintf(pont_arq,"P1: %s %s %s %s %s\n", P1[0].nome, P1[1].nome, P1[2].nome, P1[3].nome, P1[4].nome);
+	fprintf(pont_arq,"P2: %s %s %s %s %s\n\n", P2[0].nome, P2[1].nome, P2[2].nome, P2[3].nome, P2[4].nome);
+	fprintf(pont_arq,"P2 GANHOU A PARTIDA\n");
+	fprintf(pont_arq,"======================================================================");
+  }
+  
+  
+  fclose(pont_arq);
+  return 1;
 }
 
 #endif
