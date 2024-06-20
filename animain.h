@@ -78,6 +78,36 @@ void printdesc()
 	printf("_________________________________________________________________________________________________________|\n\n");
 }
 
+void printa_historico(const char *nomeArquivo) {
+    FILE *arquivo;
+    char linha[100]; // Tamanho arbitrário para leitura da linha
+
+    // Abre o arquivo para leitura
+    arquivo = fopen(nomeArquivo, "r");
+
+    // Verifica se o arquivo foi aberto corretamente
+    if (arquivo == NULL) {
+        perror("Erro ao abrir o arquivo");
+        return;
+    }
+    
+    printf("\n\n===============================HISTORICO==============================\n");
+    printf("======================================================================\n");
+
+    // Lê e imprime cada linha do arquivo
+    while (fgets(linha, sizeof(linha), arquivo) != NULL) {
+        printf("%s", linha);
+    }
+
+    // Fecha o arquivo após a leitura
+    fclose(arquivo);
+}
+
+void printbib(){
+    printf("\n\n==============================BIBLIOTECA==============================\n");
+    printf("1: Ver empregos\n2: Ver historico\n3: Voltar\n");
+}
+
 void printcred(){
     printf("\n\n================================CREDITOS================================\n");
     printf("                            ~Joao Pedro Borges~\n                            ~Joao Pedro Goes~\n                            ~Rafael Guerra~\n                            ~Joao Pedro Guimaraes~\n\n");
@@ -182,10 +212,26 @@ int telaInicio(int config[]){
         }
         if(n==3){
         	int esc_conf;
+        	while(0<1){
         	system("cls");
-            printdesc();
-            printf("Digite 1 para voltar: ");
+        	printbib();
+        	printf("Digite sua escolha: ");
         	scanf("%d", &esc_conf);
+			if(esc_conf==1){
+				system("cls");
+				printdesc();
+				printf("Digite 1 para voltar: ");
+        		scanf("%d", &esc_conf);
+			}
+			else if(esc_conf==2){
+				system("cls");
+				printa_historico("HistorySAJ.txt");
+				printf("\n\nDigite 1 para voltar: ");
+        		scanf("%d", &esc_conf);
+				}
+			else if(esc_conf==3){	
+				break;
+			}}
         }
         if (n==4)
         {
