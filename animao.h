@@ -7,6 +7,7 @@
 #include <string.h>
 #include "animain.h"
 #include "aniloja.h"
+#include "anifases.h"
 
 void escolhe_loja(tp_compra mao[], int vidajogador){
 	
