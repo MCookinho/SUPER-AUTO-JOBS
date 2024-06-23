@@ -81,6 +81,7 @@ int main(){
 		//Menu
 		switch(telaInicio(config)){
 			case 0:
+				limpa_historico("HistorySAJ.txt");
 				return 0;//caso escolha encerrar o jogo
 				break;
 			case 1:

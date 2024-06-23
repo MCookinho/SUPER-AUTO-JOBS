@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+
+
 //Estrutura dos personagens
 typedef struct{
 char nome[15];
@@ -98,9 +100,6 @@ void printa_historico(const char *nomeArquivo) {
     while (fgets(linha, sizeof(linha), arquivo) != NULL) {
         printf("%s", linha);
     }
-
-    // Fecha o arquivo após a leitura
-    fclose(arquivo);
 }
 
 void printbib(){
@@ -111,6 +110,15 @@ void printbib(){
 void printcred(){
     printf("\n\n================================CREDITOS================================\n");
     printf("                            ~Joao Pedro Borges~\n                            ~Joao Pedro Goes~\n                            ~Rafael Guerra~\n                            ~Joao Pedro Guimaraes~\n\n");
+}
+
+void limpa_historico(const char *nomeArquivo) {
+    FILE *arquivo = fopen(nomeArquivo, "w"); 
+    if (arquivo != NULL) {
+        fclose(arquivo);
+    } else {
+        perror("Erro ao limpar o arquivo");
+    }
 }
 
 void printconfig(){
@@ -175,116 +183,119 @@ void restaura_config(int config[]){
 	system("color 0F");
 }
 
-int telaInicio(int config[]){
+int telaInicio(int config[]) {
     int n;
-    while (1==1){
-    system("cls");
-    printf("\n\n             |============================================|\n");
-    printf("             |======> BEM VINDO AO SUPER AUTO JOBS <======|\n");
-    printf("             |============================================|\n");
-    printf("             |=========Jogar=================Sair=========|\n");
-    printf("             |=================Biblioteca=================|\n");
-    printf("             |============================================|\n\n");
+    while (1) {
+        system("cls");
+        printf("\n\n             |============================================|\n");
+        printf("             |======> BEM VINDO AO SUPER AUTO JOBS <======|\n");
+        printf("             |============================================|\n");
+        printf("             |=========Jogar=================Sair=========|\n");
+        printf("             |=================Biblioteca=================|\n");
+        printf("             |============================================|\n\n");
         printf("Digite 1 para Jogar\n");
         printf("Digite 2 para Sair\n");
         printf("Digite 3 para Checar a Biblioteca\n");
         printf("Digite 4 para Configuracoes\n");
-        printf("Digite 5 para Extras\n\n");
+        printf("Digite 5 para Extras\n");
+        printf("Digite 6 para Ver Historico\n\n"); // Nova opção adicionada
         printf("Digite sua escolha: ");
         scanf("%d", &n);
-        if(n==1){
-        	int esc_conf;
-        	while(0<1){
-        	system("cls");
-        	printgamemode();
-        	printf("Digite sua escolha: ");
-        	scanf("%d", &esc_conf);
-			if(esc_conf==1)
-				return 1;
-			else if(esc_conf==2)
-				return 2;
-			else if(esc_conf==3)	
-				break;;
-        	}
-		}
-        if(n==2){
+
+        if (n == 1) {
+            int esc_conf;
+            while (1) {
+                system("cls");
+                printgamemode();
+                printf("Digite sua escolha: ");
+                scanf("%d", &esc_conf);
+                if (esc_conf == 1)
+                    return 1;
+                else if (esc_conf == 2)
+                    return 2;
+                else if (esc_conf == 3)
+                    break;
+            }
+        }
+        if (n == 2) {
+        	limpa_historico("HistorySAJ.txt");
             return 0;
         }
-        if(n==3){
-        	int esc_conf;
-        	while(0<1){
-        	system("cls");
-        	printbib();
-        	printf("Digite sua escolha: ");
-        	scanf("%d", &esc_conf);
-			if(esc_conf==1){
-				system("cls");
-				printdesc();
-				printf("Digite 1 para voltar: ");
-        		scanf("%d", &esc_conf);
-			}
-			else if(esc_conf==2){
-				system("cls");
-				printa_historico("HistorySAJ.txt");
-				printf("\n\nDigite 1 para voltar: ");
-        		scanf("%d", &esc_conf);
-				}
-			else if(esc_conf==3){	
-				break;
-			}}
+        if (n == 3) {
+            int esc_conf;
+            while (1) {
+                system("cls");
+                printbib();
+                printf("Digite sua escolha: ");
+                scanf("%d", &esc_conf);
+                if (esc_conf == 1) {
+                    system("cls");
+                    printdesc();
+                    printf("Digite 1 para voltar: ");
+                    scanf("%d", &esc_conf);
+                } else if (esc_conf == 2) {
+                    system("cls");
+                    printa_historico("HistorySAJ.txt");
+                    printf("\n\nDigite 1 para voltar: ");
+                    scanf("%d", &esc_conf);
+                } else if (esc_conf == 3) {
+                    break;
+                }
+            }
         }
-        if (n==4)
-        {
-        	int esc_conf;
-        	while(0<1){
-        	system("cls");
-        	printconfig();
-        	printf("\nDigite sua escolha: ");
-        	scanf("%d", &esc_conf);
-			if(esc_conf==1){
-				temas();
-			}
-			else if(esc_conf==2){
-				do{
-				printf("\nDigite os segundos de delay por turno: ");
-				scanf("%d", &config[0]);} while(config[0] < 0);
-				}
-			else if(esc_conf==3){
-				printf("\n\n1: Facil, 2: Medio, 3: Dificil\n");
-				printf("Digite a dificuldade: ");
-				scanf("%d", &config[1]);
-			}
-			else if(esc_conf==4){
-				restaura_config(config);
-			}
-			else if(esc_conf==5)
-        		break;
-		} }
-        if (n==5)
-        {
-        	int esc_conf;
-        	while(0<1){
-        	system("cls");
-        	printextras();
-        	printf("Digite sua escolha: ");
-        	scanf("%d", &esc_conf);
-			if(esc_conf==1){
-				system("cls");
-				printcred();
-				printf("Digite 1 para voltar: ");
-        		scanf("%d", &esc_conf);
-			}
-			else if(esc_conf==2){
-				system("explorer https://teamwood.itch.io/super-auto-pets");
-				}
-			else if(esc_conf==3){	
-				system("explorer https://github.com/MCookinho/SUPER-AUTO-JOBS/");
-			}
-			else if(esc_conf==4)
-        		break;
-		}}
-		}
-	
+        if (n == 4) {
+            int esc_conf;
+            while (1) {
+                system("cls");
+                printconfig();
+                printf("\nDigite sua escolha: ");
+                scanf("%d", &esc_conf);
+                if (esc_conf == 1) {
+                    temas();
+                } else if (esc_conf == 2) {
+                    do {
+                        printf("\nDigite os segundos de delay por turno: ");
+                        scanf("%d", &config[0]);
+                    } while (config[0] < 0);
+                } else if (esc_conf == 3) {
+                    printf("\n\n1: Facil, 2: Medio, 3: Dificil\n");
+                    printf("Digite a dificuldade: ");
+                    scanf("%d", &config[1]);
+                } else if (esc_conf == 4) {
+                    restaura_config(config);
+                } else if (esc_conf == 5) {
+                    break;
+                }
+            }
+        }
+        if (n == 5) {
+            int esc_conf;
+            while (1) {
+                system("cls");
+                printextras();
+                printf("Digite sua escolha: ");
+                scanf("%d", &esc_conf);
+                if (esc_conf == 1) {
+                    system("cls");
+                    printcred();
+                    printf("Digite 1 para voltar: ");
+                    scanf("%d", &esc_conf);
+                } else if (esc_conf == 2) {
+                    system("explorer https://teamwood.itch.io/super-auto-pets");
+                } else if (esc_conf == 3) {
+                    system("explorer https://github.com/MCookinho/SUPER-AUTO-JOBS/");
+                } else if (esc_conf == 4) {
+                    break;
+                }
+            }
+        }
+        if (n == 6) { // Condição para a nova opção
+            system("cls");
+            printa_historico("HistorySAJ.txt");
+            printf("\n\nDigite 1 para voltar: ");
+            scanf("%d", &n);
+        }
+    }
     return 1;
 }
 
@@ -334,6 +345,7 @@ void fim_de_jogo(int cond){
 			sleep(1);
 			}
 	}
+	
 }
 
 void printa_jogador_mp(int cond){
