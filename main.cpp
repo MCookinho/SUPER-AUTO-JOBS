@@ -8,24 +8,25 @@ int singleplayer(tp_nome_equipe nomeeqp, tp_nome_equipe cpunome, int config[3], 
 	
 	escolhe_loja(mao, vidaplayer);//primeiro turno
 	faznome(&nomeeqp, &cpunome);
-	grava_historico_SP(mao, 0, nomeeqp, cpunome);
 	SP_batalha(mao, nomeeqp, cpunome, &vidaplayer, &vidacpu, config, fase);
 	
 	while(vidaplayer > 0 && vidacpu > 0){//outros turnos
 	fase+=1;
 	escolhe_loja(mao, vidaplayer);
-	grava_historico_SP(mao, 1, nomeeqp, cpunome);
 	SP_batalha(mao, nomeeqp, cpunome, &vidaplayer, &vidacpu, config, fase);
 	}
 	
-	if(vidaplayer <= 0){
-		grava_historico_SP(mao, 2, nomeeqp, cpunome);
-		fim_de_jogo(0);}
-	if(vidacpu <= 0){
-		grava_historico_SP(mao, 3, nomeeqp, cpunome);
-		fim_de_jogo(1);}
+			
+	if(contCPU>contPlayer){
+	grava_historico_SP(mao, 3, nomeeqp, cpunome);
+	fim_de_jogo(0);
+		}
+	if(contCPU<contPlayer){
+	grava_historico_SP(mao, 2, nomeeqp, cpunome);
+	fim_de_jogo(1);
+	}
 }
-
+ 
 int multiplayer(tp_nome_equipe nome_P1, tp_nome_equipe nome_P2, int config[3], tp_compra mao_P1[5], int vida_P1, int vida_P2){
 	
 	tp_nome_equipe nome_vazio;
@@ -38,7 +39,6 @@ int multiplayer(tp_nome_equipe nome_P1, tp_nome_equipe nome_P2, int config[3], t
 	printa_jogador_mp(2);
 	escolhe_loja(mao_P2, vida_P2);
 	faznome(&nome_P2, &nome_vazio);
-	grava_historico_MP(mao_P1, mao_P2, 0, nome_P1, nome_P2);
 	MP_batalha(mao_P1, mao_P2, nome_P1, nome_P2, &vida_P1, &vida_P2, config);
 	
 	while(vida_P1 > 0 && vida_P2 > 0){//outros turnos
@@ -46,7 +46,6 @@ int multiplayer(tp_nome_equipe nome_P1, tp_nome_equipe nome_P2, int config[3], t
 		escolhe_loja(mao_P1, vida_P1);
 		printa_jogador_mp(2);
 		escolhe_loja(mao_P2, vida_P2);
-		grava_historico_MP(mao_P1, mao_P2, 1, nome_P1, nome_P2);
 		MP_batalha(mao_P1, mao_P2, nome_P1, nome_P2, &vida_P1, &vida_P2, config);
 		}
 		
@@ -81,7 +80,6 @@ int main(){
 		//Menu
 		switch(telaInicio(config)){
 			case 0:
-				limpa_historico("HistorySAJ.txt");
 				return 0;//caso escolha encerrar o jogo
 				break;
 			case 1:

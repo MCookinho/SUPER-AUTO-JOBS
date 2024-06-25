@@ -100,6 +100,7 @@ void printa_historico(const char *nomeArquivo) {
     while (fgets(linha, sizeof(linha), arquivo) != NULL) {
         printf("%s", linha);
     }
+    fclose(arquivo);
 }
 
 void printbib(){
@@ -198,7 +199,7 @@ int telaInicio(int config[]) {
         printf("Digite 3 para Checar a Biblioteca\n");
         printf("Digite 4 para Configuracoes\n");
         printf("Digite 5 para Extras\n");
-        printf("Digite 6 para Ver Historico\n\n"); // Nova opção adicionada
+        printf("Digite 6 para limpar o historico\n\n"); // Nova opção adicionada
         printf("Digite sua escolha: ");
         scanf("%d", &n);
 
@@ -218,7 +219,6 @@ int telaInicio(int config[]) {
             }
         }
         if (n == 2) {
-        	limpa_historico("HistorySAJ.txt");
             return 0;
         }
         if (n == 3) {
@@ -290,10 +290,8 @@ int telaInicio(int config[]) {
             }
         }
         if (n == 6) { // Condição para a nova opção
-            system("cls");
-            printa_historico("HistorySAJ.txt");
-            printf("\n\nDigite 1 para voltar: ");
-            scanf("%d", &n);
+            	limpa_historico("HistorySAJ.txt");
+		
         }
     }
     return 1;

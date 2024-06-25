@@ -158,94 +158,10 @@ void define_fase(tp_animal oponente[], int fase){
 	
 }
 
-void remover_ultimas_linhas_do_arquivo(const char *filename, int N) {
-    FILE *fp, *tmp_fp;
-    char c;
-    int lines = 0, current_line = 0;
-
-    // Abrir o arquivo original para leitura
-    fp = fopen(filename, "r");
-    if (fp == NULL) {
-        perror("Erro ao abrir o arquivo");
-        return;
-    }
-
-    // Contar o número de linhas no arquivo
-    while ((c = fgetc(fp)) != EOF) {
-        if (c == '\n') {
-            lines++;
-        }
-    }
-
-    // Voltar ao início do arquivo
-    fseek(fp, 0, SEEK_SET);
-
-    // Abrir um arquivo temporário para escrever
-    tmp_fp = fopen("temp.txt", "w");
-    if (tmp_fp == NULL) {
-        perror("Erro ao criar arquivo temporário");
-        fclose(fp);
-        return;
-    }
-
-    // Copiar linhas do arquivo original para o temporário, exceto as últimas 10
-    while ((c = fgetc(fp)) != EOF) {
-        fputc(c, tmp_fp);
-        if (c == '\n') {
-            current_line++;
-            if (current_line == lines - N) {
-                break;  // Parar de copiar após as N últimas linhas
-            }
-        }
-    }
-
-    // Fechar os arquivos
-    fclose(fp);
-    fclose(tmp_fp);
-
-    // Remover o arquivo original e renomear o temporário
-    remove(filename);
-    rename("temp.txt", filename);
-}
-
 int grava_historico_SP(tp_compra P1[], int cond, tp_nome_equipe nome_P1, tp_nome_equipe nome_P2){
  FILE *pont_arq;
- 
-  if (cond == 0){
-	pont_arq = fopen("HistorySAJ.txt","a");
-	
-	if (pont_arq == NULL)
-	  {
-	    printf("Erro ao tentar ler o historico!");
-	    return 0;
-	  }
-	fprintf(pont_arq,"\nSINGLEPLAYER:\n");
-	fprintf(pont_arq,"\n%s %s           vs         %s %s\n\n", nome_P1.substantivo, nome_P1.adjetivo, nome_P2.substantivo, nome_P2.adjetivo);
-	fprintf(pont_arq,"P1: %s %s %s %s %s\n\n", P1[0].carta[0].nome, P1[1].carta[0].nome, P1[2].carta[0].nome, P1[3].carta[0].nome, P1[4].carta[0].nome);
-	fprintf(pont_arq,"ABANDONO DE PARTIDA\n");
-	fprintf(pont_arq,"======================================================================\n");
-	
-  }
-  
-  if (cond == 1){
-  	remover_ultimas_linhas_do_arquivo("HistorySAJ.txt", 8);
-  	pont_arq = fopen("HistorySAJ.txt","a");
-	
-	if (pont_arq == NULL)
-	  {
-	    printf("Erro ao tentar ler o historico!");
-	    return 0;
-	  }
-	fprintf(pont_arq,"\nSINGLEPLAYER:\n");
-	fprintf(pont_arq,"\n%s %s           vs         %s %s\n\n", nome_P1.substantivo, nome_P1.adjetivo, nome_P2.substantivo, nome_P2.adjetivo);
-	fprintf(pont_arq,"P1: %s %s %s %s %s\n\n", P1[0].carta[0].nome, P1[1].carta[0].nome, P1[2].carta[0].nome, P1[3].carta[0].nome, P1[4].carta[0].nome);
-	fprintf(pont_arq,"ABANDONO DE PARTIDA\n");
-	fprintf(pont_arq,"======================================================================\n");
-	
-  }
-  
+   
   if (cond == 2){
-  	remover_ultimas_linhas_do_arquivo("HistorySAJ.txt", 8);
   	pont_arq = fopen("HistorySAJ.txt","a");
 	
 	if (pont_arq == NULL)
@@ -261,7 +177,6 @@ int grava_historico_SP(tp_compra P1[], int cond, tp_nome_equipe nome_P1, tp_nome
   }
   
   if (cond == 3){
-  	remover_ultimas_linhas_do_arquivo("HistorySAJ.txt", 8);
   	pont_arq = fopen("HistorySAJ.txt","a");
 	
 	if (pont_arq == NULL)
@@ -282,45 +197,11 @@ int grava_historico_SP(tp_compra P1[], int cond, tp_nome_equipe nome_P1, tp_nome
 }
 
 int grava_historico_MP(tp_compra P1[], tp_compra P2[], int cond, tp_nome_equipe nome_P1, tp_nome_equipe nome_P2){
+	
  FILE *pont_arq;
- 
-  if (cond == 0){
-	pont_arq = fopen("HistorySAJ.txt","a");
-	
-	if (pont_arq == NULL)
-	  {
-	    printf("Erro ao tentar ler o historico!");
-	    return 0;
-	  }
-	fprintf(pont_arq,"\nMULTIPLAYER:\n");
-	fprintf(pont_arq,"\n%s %s           vs         %s %s\n\n", nome_P1.substantivo, nome_P1.adjetivo, nome_P2.substantivo, nome_P2.adjetivo);
-	fprintf(pont_arq,"P1: %s %s %s %s %s\n", P1[0].carta[0].nome, P1[1].carta[0].nome, P1[2].carta[0].nome, P1[3].carta[0].nome, P1[4].carta[0].nome);
-	fprintf(pont_arq,"P2: %s %s %s %s %s\n\n", P2[0].carta[0].nome, P2[1].carta[0].nome, P2[2].carta[0].nome, P2[3].carta[0].nome, P2[4].carta[0].nome);
-	fprintf(pont_arq,"ABANDONO DE PARTIDA\n");
-	fprintf(pont_arq,"======================================================================\n");
-	
-  }
-  
-  if (cond == 1){
-  	remover_ultimas_linhas_do_arquivo("HistorySAJ.txt", 9);
-  	pont_arq = fopen("HistorySAJ.txt","a");
-	
-	if (pont_arq == NULL)
-	  {
-	    printf("Erro ao tentar ler o historico!");
-	    return 0;
-	  }
-	fprintf(pont_arq,"\nMULTIPLAYER:\n");
-	fprintf(pont_arq,"\n%s %s           vs         %s %s\n\n", nome_P1.substantivo, nome_P1.adjetivo, nome_P2.substantivo, nome_P2.adjetivo);
-	fprintf(pont_arq,"P1: %s %s %s %s %s\n", P1[0].carta[0].nome, P1[1].carta[0].nome, P1[2].carta[0].nome, P1[3].carta[0].nome, P1[4].carta[0].nome);
-	fprintf(pont_arq,"P2: %s %s %s %s %s\n\n", P2[0].carta[0].nome, P2[1].carta[0].nome, P2[2].carta[0].nome, P2[3].carta[0].nome, P2[4].carta[0].nome);
-	fprintf(pont_arq,"ABANDONO DE PARTIDA\n");
-	fprintf(pont_arq,"======================================================================\n");
-	
-  }
   
   if (cond == 2){
-  	remover_ultimas_linhas_do_arquivo("HistorySAJ.txt", 9);
+
   	pont_arq = fopen("HistorySAJ.txt","a");
 	
 	if (pont_arq == NULL)
@@ -337,7 +218,6 @@ int grava_historico_MP(tp_compra P1[], tp_compra P2[], int cond, tp_nome_equipe 
   }
   
   if (cond == 3){
-  	remover_ultimas_linhas_do_arquivo("HistorySAJ.txt", 9);
   	pont_arq = fopen("HistorySAJ.txt","a");
 	
 	if (pont_arq == NULL)
@@ -357,5 +237,7 @@ int grava_historico_MP(tp_compra P1[], tp_compra P2[], int cond, tp_nome_equipe 
   fclose(pont_arq);
   return 1;
 }
+
+
 
 #endif
