@@ -14,18 +14,23 @@ int singleplayer(tp_nome_equipe nomeeqp, tp_nome_equipe cpunome, int config[3], 
 	while(vidaplayer > 0 && vidacpu > 0){//outros turnos
 	fase+=1;
 	escolhe_loja(mao, vidaplayer);
-	grava_historico_SP(mao, 1, nomeeqp, cpunome);
 	SP_batalha(mao, nomeeqp, cpunome, &vidaplayer, &vidacpu, config, fase);
 	}
 	
-	if(vidaplayer <= 0){
-		grava_historico_SP(mao, 2, nomeeqp, cpunome);
-		fim_de_jogo(0);}
-	if(vidacpu <= 0){
-		grava_historico_SP(mao, 3, nomeeqp, cpunome);
-		fim_de_jogo(1);}
+			
+	if(contCPU>contPlayer){
+	grava_historico_SP(mao, 3, nomeeqp, cpunome);
+	fim_de_jogo(0);
+		}
+	if(contCPU<contPlayer){
+	grava_historico_SP(mao, 2, nomeeqp, cpunome);
+	fim_de_jogo(1);
+	}
+	if(vidaplayer>0&&vidacpu>0){
+		grava_historico_SP(mao, 1, nomeeqp, cpunome);
+	}
 }
-
+ 
 int multiplayer(tp_nome_equipe nome_P1, tp_nome_equipe nome_P2, int config[3], tp_compra mao_P1[5], int vida_P1, int vida_P2){
 	
 	tp_nome_equipe nome_vazio;

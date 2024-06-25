@@ -1090,6 +1090,9 @@ void skills(tp_fila *filajogador, tp_fila *filacpu, tp_animal *frentejogador, tp
 	faz_filas_batalha(mao, cpu, filajogador, filacpu);
 }
 
+int contCPU = 0;
+int contPlayer = 0;
+
 void SP_batalha(tp_compra mao[], tp_nome_equipe nomeplayer, tp_nome_equipe nomecpu, int *vidaplayer, int *vidacpu, int config[], int fase){
 	tp_animal oponente[5], maoaux[5], frentejogador, frenteoponente;
 	tp_fila filajogador, filacpu;
@@ -1134,10 +1137,12 @@ void SP_batalha(tp_compra mao[], tp_nome_equipe nomeplayer, tp_nome_equipe nomec
 	if(filaVazia(&filajogador) && frentejogador.vida <= 0 && (!filaVazia(&filacpu) || frenteoponente.vida > 0)){
 		*vidaplayer -= 1;
 		printf("OPONENTE GANHOU!!!");
+		contCPU++;
 	}
 	else if(filaVazia(&filacpu) && frenteoponente.vida <= 0 && (!filaVazia(&filajogador) || frentejogador.vida > 0)){
 		*vidacpu -= 1;
 		printf("VOCE GANHOU!!!");
+		contPlayer++;
 	}
 	else{
 		printf("EMPATE!!!");
@@ -1145,7 +1150,6 @@ void SP_batalha(tp_compra mao[], tp_nome_equipe nomeplayer, tp_nome_equipe nomec
 	sleep(config[0]);
 
 }
-
 
 void MP_batalha(tp_compra P1[],tp_compra P2[], tp_nome_equipe nome_P1, tp_nome_equipe nome_P2, int *vida_P1, int *vida_P2, int config[]){
 	tp_animal P1_aux[5], P2_aux[5], frente_P1, frente_P2;
